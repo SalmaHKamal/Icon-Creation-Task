@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.8.1)
+  - SearchTextField (1.2.2)
+  - SnapKit (4.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - SearchTextField
+  - SnapKit (~> 4.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - SearchTextField
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+
+PODFILE CHECKSUM: 1ee96eb679573b44e50b464663d21b7bc2b1ebc3
+
+COCOAPODS: 1.5.3
