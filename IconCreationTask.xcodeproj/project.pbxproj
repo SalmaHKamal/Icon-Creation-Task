@@ -8,13 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		800D0D732215456C002728C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D0D722215456C002728C8 /* AppDelegate.swift */; };
-		800D0D752215456C002728C8 /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D0D742215456C002728C8 /* SignupController.swift */; };
 		800D0D782215456C002728C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 800D0D762215456C002728C8 /* Main.storyboard */; };
 		800D0D7B2215456C002728C8 /* IconCreationTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 800D0D792215456C002728C8 /* IconCreationTask.xcdatamodeld */; };
 		800D0D7D2215456D002728C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 800D0D7C2215456D002728C8 /* Assets.xcassets */; };
 		800D0D802215456D002728C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 800D0D7E2215456D002728C8 /* LaunchScreen.storyboard */; };
-		80F2D7EF2215539F003097EE /* SignUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7EE2215539F003097EE /* SignUpCell.swift */; };
-		80F2D7F122155A6A003097EE /* learnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F022155A6A003097EE /* learnVC.swift */; };
+		801970E32219874700749CE9 /* AgendaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801970E22219874700749CE9 /* AgendaTableViewController.swift */; };
+		801970E8221987B300749CE9 /* AgendaFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801970E6221987B300749CE9 /* AgendaFirstTableViewCell.swift */; };
+		801970E9221987B300749CE9 /* AgendaFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801970E7221987B300749CE9 /* AgendaFirstTableViewCell.xib */; };
+		80316B68221686A2008AFDAA /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80316B67221686A1008AFDAA /* AgendaViewController.swift */; };
+		80316B6B22168C6C008AFDAA /* NavigationControllerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80316B6A22168C6C008AFDAA /* NavigationControllerEx.swift */; };
+		80316B6D22168DE3008AFDAA /* UIApplicationEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80316B6C22168DE3008AFDAA /* UIApplicationEx.swift */; };
+		80316B6F22168DF9008AFDAA /* AppDelegateEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80316B6E22168DF9008AFDAA /* AppDelegateEx.swift */; };
+		80316B732216ADA1008AFDAA /* EventCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80316B722216ADA1008AFDAA /* EventCard.xib */; };
+		80B4915D2215A18500DD25D3 /* Century Gothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B4915C2215A15900DD25D3 /* Century Gothic.ttf */; };
+		80B4915F2215A8A100DD25D3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4915E2215A8A100DD25D3 /* Constants.swift */; };
+		80C563B12216B0F80038B9DF /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C563B02216B0F80038B9DF /* EventCard.swift */; };
+		80C563B52216B2A20038B9DF /* DateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C563B42216B2A20038B9DF /* DateView.xib */; };
+		80C563B82216B3610038B9DF /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C563B72216B3610038B9DF /* DateView.swift */; };
+		80C563BB2216BC200038B9DF /* TimelineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C563BA2216BC200038B9DF /* TimelineView.xib */; };
+		80F275142216CD5400864D59 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F275132216CD5400864D59 /* TimelineView.swift */; };
+		80F275182216E4FA00864D59 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F275172216E4FA00864D59 /* SessionViewController.swift */; };
+		80F2D7F3221563E7003097EE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F2221563E7003097EE /* SignUpViewController.swift */; };
+		80F2D7F722157EEF003097EE /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F622157EEF003097EE /* NetworkServices.swift */; };
+		80F2D7F922157F43003097EE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F822157F43003097EE /* UserModel.swift */; };
+		80FF302122176A32009CC5CB /* SignupViewControllerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF302022176A32009CC5CB /* SignupViewControllerEx.swift */; };
+		80FF302322177565009CC5CB /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF302222177565009CC5CB /* UIColorEx.swift */; };
 		ADAC35723CC61FA989BE3501 /* Pods_IconCreationTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E89E582427B76F19E6D4B5 /* Pods_IconCreationTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,14 +42,32 @@
 		7F3CAFD192457DDB291E1763 /* Pods-IconCreationTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IconCreationTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IconCreationTask/Pods-IconCreationTask.debug.xcconfig"; sourceTree = "<group>"; };
 		800D0D6F2215456C002728C8 /* IconCreationTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconCreationTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		800D0D722215456C002728C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		800D0D742215456C002728C8 /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		800D0D772215456C002728C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		800D0D7A2215456C002728C8 /* IconCreationTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IconCreationTask.xcdatamodel; sourceTree = "<group>"; };
 		800D0D7C2215456D002728C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		800D0D7F2215456D002728C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		800D0D812215456D002728C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80F2D7EE2215539F003097EE /* SignUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCell.swift; sourceTree = "<group>"; };
-		80F2D7F022155A6A003097EE /* learnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnVC.swift; sourceTree = "<group>"; };
+		801970E22219874700749CE9 /* AgendaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewController.swift; sourceTree = "<group>"; };
+		801970E6221987B300749CE9 /* AgendaFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFirstTableViewCell.swift; sourceTree = "<group>"; };
+		801970E7221987B300749CE9 /* AgendaFirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgendaFirstTableViewCell.xib; sourceTree = "<group>"; };
+		80316B67221686A1008AFDAA /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		80316B6A22168C6C008AFDAA /* NavigationControllerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerEx.swift; sourceTree = "<group>"; };
+		80316B6C22168DE3008AFDAA /* UIApplicationEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationEx.swift; sourceTree = "<group>"; };
+		80316B6E22168DF9008AFDAA /* AppDelegateEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateEx.swift; sourceTree = "<group>"; };
+		80316B722216ADA1008AFDAA /* EventCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCard.xib; sourceTree = "<group>"; };
+		80B4915C2215A15900DD25D3 /* Century Gothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Century Gothic.ttf"; sourceTree = "<group>"; };
+		80B4915E2215A8A100DD25D3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		80C563B02216B0F80038B9DF /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
+		80C563B42216B2A20038B9DF /* DateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateView.xib; sourceTree = "<group>"; };
+		80C563B72216B3610038B9DF /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		80C563BA2216BC200038B9DF /* TimelineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineView.xib; sourceTree = "<group>"; };
+		80F275132216CD5400864D59 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		80F275172216E4FA00864D59 /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
+		80F2D7F2221563E7003097EE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		80F2D7F622157EEF003097EE /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
+		80F2D7F822157F43003097EE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		80FF302022176A32009CC5CB /* SignupViewControllerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewControllerEx.swift; sourceTree = "<group>"; };
+		80FF302222177565009CC5CB /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,15 +120,19 @@
 		800D0D712215456C002728C8 /* IconCreationTask */ = {
 			isa = PBXGroup;
 			children = (
+				800D0D722215456C002728C8 /* AppDelegate.swift */,
+				8038BF242218503500F55C6D /* Managers */,
+				80F2D7F622157EEF003097EE /* NetworkServices.swift */,
+				80316B6922168C51008AFDAA /* Extensions */,
+				80B4915B2215A0AE00DD25D3 /* fonts */,
 				800D0D8922154598002728C8 /* Controller */,
 				800D0D8822154591002728C8 /* View */,
 				800D0D8722154587002728C8 /* Model */,
-				800D0D722215456C002728C8 /* AppDelegate.swift */,
 				800D0D7C2215456D002728C8 /* Assets.xcassets */,
 				800D0D7E2215456D002728C8 /* LaunchScreen.storyboard */,
 				800D0D812215456D002728C8 /* Info.plist */,
 				800D0D792215456C002728C8 /* IconCreationTask.xcdatamodeld */,
-				80F2D7F022155A6A003097EE /* learnVC.swift */,
+				80B4915E2215A8A100DD25D3 /* Constants.swift */,
 			);
 			path = IconCreationTask;
 			sourceTree = "<group>";
@@ -100,6 +140,8 @@
 		800D0D8722154587002728C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8038BF252218503E00F55C6D /* Realm models */,
+				80F2D7F822157F43003097EE /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,8 +149,8 @@
 		800D0D8822154591002728C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				80C563B32216B2660038B9DF /* xib files */,
 				800D0D762215456C002728C8 /* Main.storyboard */,
-				80F2D7EE2215539F003097EE /* SignUpCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,9 +158,93 @@
 		800D0D8922154598002728C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				800D0D742215456C002728C8 /* SignupController.swift */,
+				80F2D7F2221563E7003097EE /* SignUpViewController.swift */,
+				80316B67221686A1008AFDAA /* AgendaViewController.swift */,
+				80F275172216E4FA00864D59 /* SessionViewController.swift */,
+				801970E22219874700749CE9 /* AgendaTableViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		801970E1221986D800749CE9 /* agendaCell */ = {
+			isa = PBXGroup;
+			children = (
+				801970E6221987B300749CE9 /* AgendaFirstTableViewCell.swift */,
+				801970E7221987B300749CE9 /* AgendaFirstTableViewCell.xib */,
+			);
+			path = agendaCell;
+			sourceTree = "<group>";
+		};
+		80316B6922168C51008AFDAA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				80316B6A22168C6C008AFDAA /* NavigationControllerEx.swift */,
+				80316B6C22168DE3008AFDAA /* UIApplicationEx.swift */,
+				80316B6E22168DF9008AFDAA /* AppDelegateEx.swift */,
+				80FF302022176A32009CC5CB /* SignupViewControllerEx.swift */,
+				80FF302222177565009CC5CB /* UIColorEx.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8038BF242218503500F55C6D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		8038BF252218503E00F55C6D /* Realm models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Realm models";
+			sourceTree = "<group>";
+		};
+		80B4915B2215A0AE00DD25D3 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				80B4915C2215A15900DD25D3 /* Century Gothic.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		80C563B22216B2510038B9DF /* Event Card */ = {
+			isa = PBXGroup;
+			children = (
+				80316B722216ADA1008AFDAA /* EventCard.xib */,
+				80C563B02216B0F80038B9DF /* EventCard.swift */,
+			);
+			path = "Event Card";
+			sourceTree = "<group>";
+		};
+		80C563B32216B2660038B9DF /* xib files */ = {
+			isa = PBXGroup;
+			children = (
+				801970E1221986D800749CE9 /* agendaCell */,
+				80C563B92216BC0A0038B9DF /* Timline */,
+				80C563B62216B3440038B9DF /* Date Card */,
+				80C563B22216B2510038B9DF /* Event Card */,
+			);
+			path = "xib files";
+			sourceTree = "<group>";
+		};
+		80C563B62216B3440038B9DF /* Date Card */ = {
+			isa = PBXGroup;
+			children = (
+				80C563B42216B2A20038B9DF /* DateView.xib */,
+				80C563B72216B3610038B9DF /* DateView.swift */,
+			);
+			path = "Date Card";
+			sourceTree = "<group>";
+		};
+		80C563B92216BC0A0038B9DF /* Timline */ = {
+			isa = PBXGroup;
+			children = (
+				80C563BA2216BC200038B9DF /* TimelineView.xib */,
+				80F275132216CD5400864D59 /* TimelineView.swift */,
+			);
+			path = Timline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,9 +307,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801970E9221987B300749CE9 /* AgendaFirstTableViewCell.xib in Resources */,
+				80C563BB2216BC200038B9DF /* TimelineView.xib in Resources */,
 				800D0D802215456D002728C8 /* LaunchScreen.storyboard in Resources */,
 				800D0D7D2215456D002728C8 /* Assets.xcassets in Resources */,
+				80B4915D2215A18500DD25D3 /* Century Gothic.ttf in Resources */,
 				800D0D782215456C002728C8 /* Main.storyboard in Resources */,
+				80C563B52216B2A20038B9DF /* DateView.xib in Resources */,
+				80316B732216ADA1008AFDAA /* EventCard.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,16 +353,24 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-IconCreationTask/Pods-IconCreationTask-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -245,11 +384,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				800D0D752215456C002728C8 /* SignupController.swift in Sources */,
-				80F2D7EF2215539F003097EE /* SignUpCell.swift in Sources */,
-				80F2D7F122155A6A003097EE /* learnVC.swift in Sources */,
+				80F2D7F722157EEF003097EE /* NetworkServices.swift in Sources */,
 				800D0D732215456C002728C8 /* AppDelegate.swift in Sources */,
+				80316B6F22168DF9008AFDAA /* AppDelegateEx.swift in Sources */,
+				80F2D7F3221563E7003097EE /* SignUpViewController.swift in Sources */,
+				801970E8221987B300749CE9 /* AgendaFirstTableViewCell.swift in Sources */,
+				80FF302322177565009CC5CB /* UIColorEx.swift in Sources */,
+				80316B68221686A2008AFDAA /* AgendaViewController.swift in Sources */,
+				80316B6D22168DE3008AFDAA /* UIApplicationEx.swift in Sources */,
+				80C563B82216B3610038B9DF /* DateView.swift in Sources */,
+				801970E32219874700749CE9 /* AgendaTableViewController.swift in Sources */,
+				80F275182216E4FA00864D59 /* SessionViewController.swift in Sources */,
+				80FF302122176A32009CC5CB /* SignupViewControllerEx.swift in Sources */,
+				80B4915F2215A8A100DD25D3 /* Constants.swift in Sources */,
+				80316B6B22168C6C008AFDAA /* NavigationControllerEx.swift in Sources */,
+				80F2D7F922157F43003097EE /* UserModel.swift in Sources */,
+				80C563B12216B0F80038B9DF /* EventCard.swift in Sources */,
 				800D0D7B2215456C002728C8 /* IconCreationTask.xcdatamodeld in Sources */,
+				80F275142216CD5400864D59 /* TimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Century Gothic.ttf">
+            <string>CenturyGothic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DateView" customModule="IconCreationTask" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="103" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Jh-k2-UQB" userLabel="date view">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xGq-sh-IdJ">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0i-hY-qEu" userLabel="day View">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="25"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubR-cN-PPQ">
+                                            <rect key="frame" x="19.5" y="0.0" width="11.5" height="25"/>
+                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="20"/>
+                                            <color key="textColor" red="0.1728983774" green="0.31587119499999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ubR-cN-PPQ" firstAttribute="centerX" secondItem="d0i-hY-qEu" secondAttribute="centerX" id="0kX-Zi-Ot6"/>
+                                        <constraint firstItem="ubR-cN-PPQ" firstAttribute="centerY" secondItem="d0i-hY-qEu" secondAttribute="centerY" id="QWN-hU-vYF"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A66-Bu-LeR" userLabel="month view">
+                                    <rect key="frame" x="0.0" y="25" width="50" height="25"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98D-CT-Liw">
+                                            <rect key="frame" x="7.5" y="2" width="35" height="21"/>
+                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="98D-CT-Liw" firstAttribute="centerY" secondItem="A66-Bu-LeR" secondAttribute="centerY" id="6Ch-d5-bbM"/>
+                                        <constraint firstItem="98D-CT-Liw" firstAttribute="centerX" secondItem="A66-Bu-LeR" secondAttribute="centerX" id="gNQ-6w-Pyk"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="3WC-ni-Zg9"/>
+                        <constraint firstAttribute="width" constant="50" id="7Qr-WT-VXI"/>
+                        <constraint firstAttribute="trailing" secondItem="xGq-sh-IdJ" secondAttribute="trailing" id="IRn-3W-7o9"/>
+                        <constraint firstAttribute="bottom" secondItem="xGq-sh-IdJ" secondAttribute="bottom" id="KdL-UL-4CW"/>
+                        <constraint firstItem="xGq-sh-IdJ" firstAttribute="centerY" secondItem="3Jh-k2-UQB" secondAttribute="centerY" id="Pmj-7v-y1x"/>
+                        <constraint firstItem="xGq-sh-IdJ" firstAttribute="top" secondItem="3Jh-k2-UQB" secondAttribute="top" id="bwJ-Lm-kco"/>
+                        <constraint firstItem="xGq-sh-IdJ" firstAttribute="centerX" secondItem="3Jh-k2-UQB" secondAttribute="centerX" id="fL8-Nb-Jnq"/>
+                        <constraint firstItem="xGq-sh-IdJ" firstAttribute="leading" secondItem="3Jh-k2-UQB" secondAttribute="leading" id="yCJ-Mb-vyf"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ux-BZ-pRG" userLabel="circle view">
+                    <rect key="frame" x="93" y="20" width="10" height="10"/>
+                    <color key="backgroundColor" red="1" green="0.2419296058" blue="0.23114804789999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="Slb-vP-vrm"/>
+                        <constraint firstAttribute="height" constant="10" id="pcs-vi-QzX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3Jh-k2-UQB" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="KyP-4G-PKz"/>
+                <constraint firstItem="4Ux-BZ-pRG" firstAttribute="centerY" secondItem="3Jh-k2-UQB" secondAttribute="centerY" id="LjR-Cl-MFw"/>
+                <constraint firstItem="4Ux-BZ-pRG" firstAttribute="leading" secondItem="3Jh-k2-UQB" secondAttribute="trailing" constant="43" id="ezQ-CL-jz8"/>
+                <constraint firstItem="4Ux-BZ-pRG" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="k44-1r-JYj"/>
+                <constraint firstItem="3Jh-k2-UQB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="k4S-BB-RRh"/>
+                <constraint firstItem="3Jh-k2-UQB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="r16-mO-cqI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="circleView" destination="4Ux-BZ-pRG" id="791-tE-JAG"/>
+                <outlet property="dayNum" destination="ubR-cN-PPQ" id="W4V-3C-yCy"/>
+                <outlet property="monthValue" destination="98D-CT-Liw" id="k2Y-Pn-qRg"/>
+            </connections>
+            <point key="canvasLocation" x="-103.2" y="5.3973013493253381"/>
+        </view>
+    </objects>
+</document>
