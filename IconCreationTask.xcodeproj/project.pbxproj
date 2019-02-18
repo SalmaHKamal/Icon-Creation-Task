@@ -31,6 +31,13 @@
 		80F2D7F3221563E7003097EE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F2221563E7003097EE /* SignUpViewController.swift */; };
 		80F2D7F722157EEF003097EE /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F622157EEF003097EE /* NetworkServices.swift */; };
 		80F2D7F922157F43003097EE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F822157F43003097EE /* UserModel.swift */; };
+		80F6984F221A888200EECE4B /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6984E221A888200EECE4B /* DatabaseManager.swift */; };
+		80F69851221A896D00EECE4B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F69850221A896D00EECE4B /* User.swift */; };
+		80F69853221A8EDE00EECE4B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F69852221A8EDE00EECE4B /* UserDefaultsManager.swift */; };
+		80F69855221AAE5500EECE4B /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F69854221AAE5500EECE4B /* EventModel.swift */; };
+		80F69857221AB7DC00EECE4B /* AgendaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F69856221AB7DC00EECE4B /* AgendaModel.swift */; };
+		80F69859221ACE7B00EECE4B /* SingleAgendaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F69858221ACE7B00EECE4B /* SingleAgendaCell.swift */; };
+		80F6985B221ACEAB00EECE4B /* singleEventDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6985A221ACEAB00EECE4B /* singleEventDetailsCell.swift */; };
 		80FF302122176A32009CC5CB /* SignupViewControllerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF302022176A32009CC5CB /* SignupViewControllerEx.swift */; };
 		80FF302322177565009CC5CB /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF302222177565009CC5CB /* UIColorEx.swift */; };
 		ADAC35723CC61FA989BE3501 /* Pods_IconCreationTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E89E582427B76F19E6D4B5 /* Pods_IconCreationTask.framework */; };
@@ -66,6 +73,13 @@
 		80F2D7F2221563E7003097EE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		80F2D7F622157EEF003097EE /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		80F2D7F822157F43003097EE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		80F6984E221A888200EECE4B /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		80F69850221A896D00EECE4B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		80F69852221A8EDE00EECE4B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		80F69854221AAE5500EECE4B /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		80F69856221AB7DC00EECE4B /* AgendaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaModel.swift; sourceTree = "<group>"; };
+		80F69858221ACE7B00EECE4B /* SingleAgendaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleAgendaCell.swift; sourceTree = "<group>"; };
+		80F6985A221ACEAB00EECE4B /* singleEventDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singleEventDetailsCell.swift; sourceTree = "<group>"; };
 		80FF302022176A32009CC5CB /* SignupViewControllerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewControllerEx.swift; sourceTree = "<group>"; };
 		80FF302222177565009CC5CB /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +156,8 @@
 			children = (
 				8038BF252218503E00F55C6D /* Realm models */,
 				80F2D7F822157F43003097EE /* UserModel.swift */,
+				80F69854221AAE5500EECE4B /* EventModel.swift */,
+				80F69856221AB7DC00EECE4B /* AgendaModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +206,8 @@
 		8038BF242218503500F55C6D /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				80F6984E221A888200EECE4B /* DatabaseManager.swift */,
+				80F69852221A8EDE00EECE4B /* UserDefaultsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -197,6 +215,7 @@
 		8038BF252218503E00F55C6D /* Realm models */ = {
 			isa = PBXGroup;
 			children = (
+				80F69850221A896D00EECE4B /* User.swift */,
 			);
 			path = "Realm models";
 			sourceTree = "<group>";
@@ -225,6 +244,8 @@
 				80C563B92216BC0A0038B9DF /* Timline */,
 				80C563B62216B3440038B9DF /* Date Card */,
 				80C563B22216B2510038B9DF /* Event Card */,
+				80F69858221ACE7B00EECE4B /* SingleAgendaCell.swift */,
+				80F6985A221ACEAB00EECE4B /* singleEventDetailsCell.swift */,
 			);
 			path = "xib files";
 			sourceTree = "<group>";
@@ -353,6 +374,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-IconCreationTask/Pods-IconCreationTask-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
@@ -365,6 +387,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
@@ -384,21 +407,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F6985B221ACEAB00EECE4B /* singleEventDetailsCell.swift in Sources */,
 				80F2D7F722157EEF003097EE /* NetworkServices.swift in Sources */,
 				800D0D732215456C002728C8 /* AppDelegate.swift in Sources */,
 				80316B6F22168DF9008AFDAA /* AppDelegateEx.swift in Sources */,
+				80F69857221AB7DC00EECE4B /* AgendaModel.swift in Sources */,
 				80F2D7F3221563E7003097EE /* SignUpViewController.swift in Sources */,
 				801970E8221987B300749CE9 /* AgendaFirstTableViewCell.swift in Sources */,
 				80FF302322177565009CC5CB /* UIColorEx.swift in Sources */,
 				80316B68221686A2008AFDAA /* AgendaViewController.swift in Sources */,
 				80316B6D22168DE3008AFDAA /* UIApplicationEx.swift in Sources */,
+				80F69851221A896D00EECE4B /* User.swift in Sources */,
 				80C563B82216B3610038B9DF /* DateView.swift in Sources */,
 				801970E32219874700749CE9 /* AgendaTableViewController.swift in Sources */,
 				80F275182216E4FA00864D59 /* SessionViewController.swift in Sources */,
+				80F69859221ACE7B00EECE4B /* SingleAgendaCell.swift in Sources */,
 				80FF302122176A32009CC5CB /* SignupViewControllerEx.swift in Sources */,
 				80B4915F2215A8A100DD25D3 /* Constants.swift in Sources */,
 				80316B6B22168C6C008AFDAA /* NavigationControllerEx.swift in Sources */,
+				80F69855221AAE5500EECE4B /* EventModel.swift in Sources */,
+				80F6984F221A888200EECE4B /* DatabaseManager.swift in Sources */,
 				80F2D7F922157F43003097EE /* UserModel.swift in Sources */,
+				80F69853221A8EDE00EECE4B /* UserDefaultsManager.swift in Sources */,
 				80C563B12216B0F80038B9DF /* EventCard.swift in Sources */,
 				800D0D7B2215456C002728C8 /* IconCreationTask.xcdatamodeld in Sources */,
 				80F275142216CD5400864D59 /* TimelineView.swift in Sources */,

@@ -18,3 +18,5 @@ let lineFillColor = UIColor.setColor(r: 238 , g: 238 , b: 238, alpha: 1.00)
 let lineBorderColor = UIColor.setColor(r: 247 , g: 247 , b: 247, alpha: 1.00)
 let signupTxtCololr = UIColor.setColor(r: 128, g: 128, b: 128, alpha: 1.00)
 let disabledSignupBtn = UIColor.setColor(r: 13, g: 110, b: 209, alpha: 0.7)
+
+

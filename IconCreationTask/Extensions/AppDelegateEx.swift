@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 extension AppDelegate {
     
@@ -17,4 +18,19 @@ extension AppDelegate {
     func styleNavigationBar() {
         UINavigationBar.appearance().barTintColor = blueThemeColor
     }
+    
+    func configRealm(){
+        
+        let schemaVer : UInt64 = 1
+        let config = Realm.Configuration(
+            schemaVersion: schemaVer,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < schemaVer) {
+                    
+                }
+        })
+        
+        Realm.Configuration.defaultConfiguration = config
+    }
+
 }

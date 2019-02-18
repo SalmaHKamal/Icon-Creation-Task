@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.1)
+  - ObjectMapper (3.4.2)
   - Realm (3.13.1):
     - Realm/Headers (= 3.13.1)
   - Realm/Headers (3.13.1)
@@ -12,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - ObjectMapper
   - RealmSwift
   - SearchTextField
   - SnapKit (~> 4.0.0)
@@ -21,6 +23,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - ObjectMapper
     - Realm
     - RealmSwift
     - SearchTextField
@@ -30,6 +33,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
@@ -37,6 +41,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 6b4cd5fff523d53e41c3901eca723af34865727b
+PODFILE CHECKSUM: 147ea270a2f412375e5ddd1d8f26ad8df80cb41d
 
 COCOAPODS: 1.5.3

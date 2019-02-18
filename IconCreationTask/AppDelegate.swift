@@ -19,11 +19,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
         styleStatusBar()
         styleNavigationBar()
-
+        decideWhatToOpen()
+        configRealm()
+        
         return true
+    }
+    
+    func decideWhatToOpen() {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let viewController: UIViewController
+        let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let value = UserDefaults.standard.value(forKey: userDefaultsKeys.isLoggedIn.rawValue) as? Bool ,
+        value  == true {
+            //go to Agenda Page
+            viewController = (mainStoryboard.instantiateViewController(withIdentifier: "agendaVC") as? AgendaViewController)!
+            window?.rootViewController = UINavigationController(rootViewController: viewController)
+        }else{
+            //go to signup
+            viewController = (mainStoryboard.instantiateViewController(withIdentifier: "signupVC") as? SignUpViewController)!
+            window?.rootViewController = viewController
+        }
+        window?.makeKeyAndVisible()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

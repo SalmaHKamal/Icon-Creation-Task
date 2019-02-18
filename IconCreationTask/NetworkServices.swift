@@ -82,14 +82,18 @@ class NetworkServices {
     
     class func getAgendaList(success: succussResult? , failure : failureResult?){
         if Connectivity.isConnectedToInternet(){
-            guard let url = URL(string: "http://166.62.117.167/Comesa_app/mobileApp/getAgenda.php")
+            guard let url = URL(string: "http://166.62.117.167/Comesa_app/mobileApp/getAgenda.php"),
+            let userID = DatabaseManager.sharedInstance.getUser()?.id
                 else{
                     return
             }
             
+            let params = ["lang" : "en",
+                      "user_id" : userID]
+            
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            request.httpBody = try! JSONSerialization.data(withJSONObject: ["lang":"en", "user_id":1], options: .prettyPrinted)
+            request.httpBody = try! JSONSerialization.data(withJSONObject: params , options: .prettyPrinted)
             
             Alamofire.request(request)
                 .responseJSON { (response) in

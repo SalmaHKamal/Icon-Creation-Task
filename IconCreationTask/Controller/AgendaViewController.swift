@@ -11,71 +11,87 @@ import SnapKit
 import Toast_Swift
 import SwiftyJSON
 
-class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
+class AgendaViewController : UIViewController {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = eventCardTable.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! singleEventDetailsCell
-        return cell
-    }
-    
-    
-    @IBOutlet weak var eventCardTable : UITableView!
-    @IBOutlet weak var dateView: UIView!
-    @IBOutlet weak var dayNum: UILabel!
-    @IBOutlet weak var monthName: UILabel!
-    @IBOutlet weak var circleView: UIView!
-    @IBOutlet weak var alignTopWithCircleView: NSLayoutConstraint!
-    @IBOutlet weak var timelineTopConstraint: NSLayoutConstraint!
-    
-    override func awakeFromNib() {
-        circleView.layer.cornerRadius = 4
-        circleView.layer.masksToBounds = true
-        circleView.backgroundColor = orangeColor
-        dayNum.text = "6"
-        monthName.text = "Jan"
-//        dateView.isHidden = true
-//        circleView.isHidden = true
-//        alignTopWithCircleView.isActive = false
-//        timelineTopConstraint.constant = 0
-//        
-        eventCardTable.delegate = self
-        eventCardTable.dataSource = self
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "reloadData"), object: nil)
-    }
-    
-    @objc func reloadData(){
-        eventCardTable.reloadData()
-    }
-}
 
-class singleEventDetailsCell : UITableViewCell {
+    @IBOutlet weak var parentTableView: UITableView!
+    @IBOutlet weak var noEventsView: UIView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
-    @IBOutlet weak var cellContentView: UIView!
-    var eventTitle = "Introduction"
+    let refreshControl = UIRefreshControl()
+    var eventName = "Introduction"
+    var agendaArray = [AgendaModel]()
+    var eventArray = [EventModel]()
     
-    override func awakeFromNib() {
-        if  let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard {
-            cellContentView.addSubview(eventCard)
-            eventCard.EventName.text = eventTitle
-            getAgendaData(card: eventCard)
-        }else{
-            print("couldn't load event card")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = satusBarColor
+        getAgendaData()
+    }
+    
+
+    
+    func showToast(msg : String){
+        view.makeToast(msg, duration : 2.0 , position : .center )
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        initNavigationBar()
+        
+        parentTableView.delegate = self
+        parentTableView.dataSource = self
+        
+        parentTableView.isHidden = true
+        noEventsView.isHidden = false
+        
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
+        
+        
+        
+        if #available(iOS 10.0, *) {
+            parentTableView.refreshControl = refreshControl
+        } else {
+            parentTableView.addSubview(refreshControl)
         }
         
-        
+        refreshControl.addTarget(self, action: #selector(refreshAgendaData), for: .valueChanged)
+
     }
     
-    func getAgendaData(card : EventCard){
+    @objc func refreshAgendaData(){
+        agendaArray = []
+        getAgendaData()
+    }
+    
+    @objc func getAgendaData(){
+        
+        
         NetworkServices.getAgendaList(success: { (value) in
             if let result = value as? JSON {
                 if result["status"] == "1" {
-                    card.EventName.text = result["data"][0]["data"][0]["title"].stringValue
-                    print(result["data"][0]["data"][0]["title"].stringValue)
-                    NotificationCenter.default.post(name: NSNotification.Name("reloadData"), object: nil)
-//                    self.cellContentView.reloadData()
+                    for agenda in result["data"][0] {
+                        for event in agenda.1 {
+                            self.eventArray.append(EventModel(_id: event.1["id"].stringValue,
+                                                         _title: event.1["title"].stringValue,
+                                                         _timeFrom: event.1["time_from"].stringValue,
+                                                         _timeTo: event.1["time_to"].stringValue ,
+                                                         _trackId: event.1["track_id"].stringValue,
+                                                         _addToCalender: event.1["adddedtocalender"].stringValue,
+                                                         _date: event.1["date"].stringValue))
+                        }
+                        
+                        self.agendaArray.append(AgendaModel(_id: agenda.1["id"].stringValue ,
+                                                       _date: agenda.1["date"].stringValue ,
+                                                       _events: self.eventArray))
+                    }
+                   
+//                    self.eventName = result["data"][0]["data"][0]["title"].stringValue
+                    self.showTable()
+                    self.reloadData()
+                    NotificationCenter.default.post(name: NSNotification.Name("updateCell"), object: nil , userInfo : ["agenda": self.agendaArray])
                 }else{
                     self.showToast(msg: result["MessageText"].stringValue)
                 }
@@ -89,61 +105,51 @@ class singleEventDetailsCell : UITableViewCell {
         }
     }
     
-    func showToast(msg : String){
-        makeToast(msg, duration : 2.0 , position : .center )
-    }
-    
-}
-
-class AgendaViewController : UIViewController {
-    
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var centeredView: UIView!
-    @IBOutlet weak var parentTableView: UITableView!
-    @IBOutlet weak var childTableView: UITableView!
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        initNavigationBar()
-        
-        parentTableView.delegate = self
-        parentTableView.dataSource = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "reloadData"), object: nil)
-//        getAgendaData()
-//        displayAgenda()
-    }
-    
     
     @objc func reloadData(){
         parentTableView.reloadData()
     }
     
-    
+    @objc func showTable(){
+        parentTableView.isHidden = false
+        noEventsView.isHidden = true
+        activityIndicatorView.startAnimating()
+        refreshControl.endRefreshing()
+    }
 
 }
 
 
 
 extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == parentTableView {
-            return 2
+            print("agenda count => \(agendaArray.count)")
+            return agendaArray.count
         }
         
-        return 3
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == parentTableView {
             let cell = parentTableView.dequeueReusableCell(withIdentifier: "agendaCell", for: indexPath) as! SingleAgendaCell
+            cell.cellIndex = indexPath.row
+            print("index path => \(cell.cellIndex)")
 //            cell.
 //            cell.circleView.layer.cornerRadius = 4
 //            cell.circleView.layer.masksToBounds = true
 //            cell.dayNum.text = "6"
 //            cell.monthName.text = "Jan"
+            if indexPath.row != 0 {
+//                cell.alignTopWithCircleView.isActive = false
+//                cell.timelineTopConstraint.constant = 0
+//                cell.timelineBottomSpace.constant = 0
+            }
             return cell
             
         }
@@ -228,59 +234,59 @@ extension AgendaViewController {
 //                maker.bottom.equalTo(contentView.snp_bottomMargin)
 //            }
 //        }
-        guard let dateView = Bundle.main.loadNibNamed("DateView", owner: self, options: nil)?.first as? DateView,
-        let timelineView = Bundle.main.loadNibNamed("TimelineView", owner: self, options: nil)?.first as? TimelineView,
-        let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard
-        else {
-            displayEmptyView()
-            return
-        }
-
-        setViewsConstraints(views: timelineView , dateView , eventCard)
-        
-    }
-    
-    func displayEmptyView(){}
-    
-    func setViewsConstraints(views : UIView...){
-        
-        
-        for view in views {
-            self.view.addSubview(view)
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-
-        let timelineView = views[0]
-        let dateView = views[1]
-        let eventView = views[2]
-
-        let dateLeading = dateView.leadingAnchor.constraint(equalToSystemSpacingAfter: self.centeredView.leadingAnchor, multiplier: 1)
-        let dateTop = dateView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
-
-        let timelineLeading = timelineView.leadingAnchor.constraint(equalTo: dateView.trailingAnchor, constant: -4)
-        let timelineTop = timelineView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
-        let timelineHieght = timelineView.heightAnchor.constraint(equalToConstant: 10 * 100)
-        let timelineBottom = timelineView.bottomAnchor.constraint(equalTo: centeredView.bottomAnchor, constant: 16)
-
-        let eventLeading = eventView.leadingAnchor.constraint(equalTo: timelineView.trailingAnchor, constant: 10)
-        let eventTop = eventView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
-        let eventHeight = eventView.heightAnchor.constraint(equalToConstant: 150)
-        let eventWidth = eventView.widthAnchor.constraint(equalToConstant: 400)
-
-        NSLayoutConstraint.activate([dateLeading , dateTop , timelineLeading , timelineTop , timelineHieght, eventLeading , eventTop , timelineBottom , eventWidth , eventHeight])
-        
-        
-//        let newView = UIView()
-//        newView.backgroundColor = UIColor.red
-//        view.addSubview(newView)
+//        guard let dateView = Bundle.main.loadNibNamed("DateView", owner: self, options: nil)?.first as? DateView,
+//        let timelineView = Bundle.main.loadNibNamed("TimelineView", owner: self, options: nil)?.first as? TimelineView,
+//        let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard
+//        else {
+//            displayEmptyView()
+//            return
+//        }
 //
-//        newView.translatesAutoresizingMaskIntoConstraints = false
-//        let horizontalConstraint = newView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-//        let verticalConstraint = newView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        let widthConstraint = newView.widthAnchor.constraint(equalToConstant: 100)
-//        let heightConstraint = newView.heightAnchor.constraint(equalToConstant: 100)
-//        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+//        setViewsConstraints(views: timelineView , dateView , eventCard)
+        
     }
+    
+//    func displayEmptyView(){}
+    
+//    func setViewsConstraints(views : UIView...){
+//
+//
+//        for view in views {
+//            self.view.addSubview(view)
+//            view.translatesAutoresizingMaskIntoConstraints = false
+//        }
+//
+//        let timelineView = views[0]
+//        let dateView = views[1]
+//        let eventView = views[2]
+//
+//        let dateLeading = dateView.leadingAnchor.constraint(equalToSystemSpacingAfter: self.centeredView.leadingAnchor, multiplier: 1)
+//        let dateTop = dateView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
+//
+//        let timelineLeading = timelineView.leadingAnchor.constraint(equalTo: dateView.trailingAnchor, constant: -4)
+//        let timelineTop = timelineView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
+//        let timelineHieght = timelineView.heightAnchor.constraint(equalToConstant: 10 * 100)
+//        let timelineBottom = timelineView.bottomAnchor.constraint(equalTo: centeredView.bottomAnchor, constant: 16)
+//
+//        let eventLeading = eventView.leadingAnchor.constraint(equalTo: timelineView.trailingAnchor, constant: 10)
+//        let eventTop = eventView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
+//        let eventHeight = eventView.heightAnchor.constraint(equalToConstant: 150)
+//        let eventWidth = eventView.widthAnchor.constraint(equalToConstant: 400)
+//
+//        NSLayoutConstraint.activate([dateLeading , dateTop , timelineLeading , timelineTop , timelineHieght, eventLeading , eventTop , timelineBottom , eventWidth , eventHeight])
+//
+//
+////        let newView = UIView()
+////        newView.backgroundColor = UIColor.red
+////        view.addSubview(newView)
+////
+////        newView.translatesAutoresizingMaskIntoConstraints = false
+////        let horizontalConstraint = newView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+////        let verticalConstraint = newView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+////        let widthConstraint = newView.widthAnchor.constraint(equalToConstant: 100)
+////        let heightConstraint = newView.heightAnchor.constraint(equalToConstant: 100)
+////        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+//    }
 
 }
 

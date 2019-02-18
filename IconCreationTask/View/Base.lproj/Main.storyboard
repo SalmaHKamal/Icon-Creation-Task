@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qic-XI-5dM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kDd-co-QXf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,7 +18,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="tZD-cs-aBK">
             <objects>
-                <tableViewController id="kDd-co-QXf" customClass="SignUpViewController" customModule="IconCreationTask" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="signupVC" id="kDd-co-QXf" customClass="SignUpViewController" customModule="IconCreationTask" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aC8-Yo-6FJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,12 +227,37 @@
         <!--Agenda View Controller-->
         <scene sceneID="4du-cI-dBh">
             <objects>
-                <viewController id="AdL-8C-r61" customClass="AgendaViewController" customModule="IconCreationTask" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="agendaVC" id="AdL-8C-r61" customClass="AgendaViewController" customModule="IconCreationTask" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FAM-wX-Rjy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n1I-y0-8a4">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D6l-bc-QnT" userLabel="no events view">
+                                <rect key="frame" x="0.0" y="64" width="375" height="936"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NeK-Lh-kAH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Event to show !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuB-hN-AKg">
+                                        <rect key="frame" x="111.5" y="457.5" width="152.5" height="21"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="TuB-hN-AKg" firstAttribute="centerX" secondItem="D6l-bc-QnT" secondAttribute="centerX" id="4Ja-wR-Hha"/>
+                                    <constraint firstItem="NeK-Lh-kAH" firstAttribute="top" secondItem="D6l-bc-QnT" secondAttribute="top" id="9g9-MU-p85"/>
+                                    <constraint firstItem="NeK-Lh-kAH" firstAttribute="centerX" secondItem="D6l-bc-QnT" secondAttribute="centerX" id="9lD-we-MhK"/>
+                                    <constraint firstAttribute="bottom" secondItem="NeK-Lh-kAH" secondAttribute="bottom" id="FWg-QM-tA4"/>
+                                    <constraint firstAttribute="trailing" secondItem="NeK-Lh-kAH" secondAttribute="trailing" id="MlE-0k-8UO"/>
+                                    <constraint firstItem="NeK-Lh-kAH" firstAttribute="leading" secondItem="D6l-bc-QnT" secondAttribute="leading" id="tXr-gt-LZs"/>
+                                    <constraint firstItem="TuB-hN-AKg" firstAttribute="centerY" secondItem="D6l-bc-QnT" secondAttribute="centerY" id="yO7-VV-4d3"/>
+                                    <constraint firstItem="NeK-Lh-kAH" firstAttribute="centerY" secondItem="D6l-bc-QnT" secondAttribute="centerY" id="zOp-Hr-Srv"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n1I-y0-8a4">
                                 <rect key="frame" x="0.0" y="64" width="375" height="936"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -287,7 +312,7 @@
                                                                             <rect key="frame" x="0.0" y="22" width="50" height="22"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOJ-CH-z7x">
-                                                                                    <rect key="frame" x="9.5" y="0.0" width="30.5" height="22"/>
+                                                                                    <rect key="frame" x="7.5" y="0.0" width="35" height="22"/>
                                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
                                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <nil key="highlightedColor"/>
@@ -385,6 +410,7 @@
                                             <outlet property="dayNum" destination="oI9-pF-AND" id="vRB-jv-s1I"/>
                                             <outlet property="eventCardTable" destination="HF3-Tc-jSB" id="FJ7-g9-vgz"/>
                                             <outlet property="monthName" destination="mOJ-CH-z7x" id="KpX-v9-ICn"/>
+                                            <outlet property="timelineBottomSpace" destination="95U-Is-ZWV" id="hT1-zd-WWL"/>
                                             <outlet property="timelineTopConstraint" destination="YgB-Gi-2Vx" id="Vb4-2C-dLM"/>
                                         </connections>
                                     </tableViewCell>
@@ -393,10 +419,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="D6l-bc-QnT" firstAttribute="leading" secondItem="SoT-IN-DQO" secondAttribute="leading" id="4P0-58-A1q"/>
                             <constraint firstItem="n1I-y0-8a4" firstAttribute="leading" secondItem="SoT-IN-DQO" secondAttribute="leading" id="4fb-2E-ohm"/>
                             <constraint firstItem="SoT-IN-DQO" firstAttribute="trailing" secondItem="n1I-y0-8a4" secondAttribute="trailing" id="GeA-Vw-AzO"/>
+                            <constraint firstItem="D6l-bc-QnT" firstAttribute="top" secondItem="SoT-IN-DQO" secondAttribute="top" id="ICv-Ot-eyN"/>
                             <constraint firstItem="SoT-IN-DQO" firstAttribute="bottom" secondItem="n1I-y0-8a4" secondAttribute="bottom" id="aaE-HO-wcV"/>
+                            <constraint firstItem="SoT-IN-DQO" firstAttribute="trailing" secondItem="D6l-bc-QnT" secondAttribute="trailing" id="iRZ-kp-vjA"/>
                             <constraint firstItem="n1I-y0-8a4" firstAttribute="top" secondItem="SoT-IN-DQO" secondAttribute="top" id="j3j-vR-drJ"/>
+                            <constraint firstItem="SoT-IN-DQO" firstAttribute="bottom" secondItem="D6l-bc-QnT" secondAttribute="bottom" id="o85-xz-HTT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SoT-IN-DQO"/>
                     </view>
@@ -411,6 +441,8 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="NeK-Lh-kAH" id="FO9-tL-OfK"/>
+                        <outlet property="noEventsView" destination="D6l-bc-QnT" id="CDS-Y7-bwi"/>
                         <outlet property="parentTableView" destination="n1I-y0-8a4" id="mBo-wQ-9S9"/>
                     </connections>
                 </viewController>
@@ -1090,22 +1122,22 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KKc-wd-R4T" userLabel="content view">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1213"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1214"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFD-WR-bTg" userLabel="top View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-lF-u0a" userLabel="details View">
-                                                        <rect key="frame" x="0.0" y="-0.5" width="375" height="129"/>
+                                                        <rect key="frame" x="0.0" y="-1" width="375" height="130"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advertising relationships VS bissiness decisions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihd-4j-9rp">
-                                                                <rect key="frame" x="32" y="32" width="299.5" height="16.5"/>
+                                                                <rect key="frame" x="32" y="32" width="306.5" height="17.5"/>
                                                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytL-wV-Rs2" userLabel="date View">
-                                                                <rect key="frame" x="32" y="56" width="100" height="20"/>
+                                                                <rect key="frame" x="32" y="57" width="103" height="20"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="diz-st-sQg">
                                                                         <rect key="frame" x="0.0" y="5" width="10" height="10"/>
@@ -1115,7 +1147,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat, 8 Dec, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyK-oq-Kdh">
-                                                                        <rect key="frame" x="18" y="3.5" width="82" height="13"/>
+                                                                        <rect key="frame" x="18" y="3.5" width="85" height="13"/>
                                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1133,7 +1165,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoQ-Ut-2zM" userLabel="time View">
-                                                                <rect key="frame" x="32" y="92" width="117" height="10"/>
+                                                                <rect key="frame" x="32" y="93" width="117" height="10"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="wOy-jl-YrR">
                                                                         <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
@@ -1162,13 +1194,13 @@
                                                                 <viewLayoutGuide key="safeArea" id="avT-dm-Ge9"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to my calender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGo-84-Gm8">
-                                                                <rect key="frame" x="266.5" y="81" width="96.5" height="21"/>
+                                                                <rect key="frame" x="254.5" y="82" width="108.5" height="21"/>
                                                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                                                 <color key="textColor" red="0.29122338720000002" green="0.36622848250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-61-TG0">
-                                                                <rect key="frame" x="305" y="61" width="20" height="20"/>
+                                                                <rect key="frame" x="299" y="62" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="AO1-V4-6yq"/>
                                                                     <constraint firstAttribute="width" constant="20" id="nz2-T4-pMV"/>
@@ -1212,10 +1244,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdg-Ij-M0G" userLabel="speakers view">
-                                                <rect key="frame" x="0.0" y="129" width="375" height="52"/>
+                                                <rect key="frame" x="0.0" y="129" width="375" height="53"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speakers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzE-8G-MMj" userLabel="Speakers">
-                                                        <rect key="frame" x="32" y="16" width="71.5" height="20"/>
+                                                        <rect key="frame" x="32" y="16" width="74.5" height="21"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
                                                         <color key="textColor" red="0.1728983774" green="0.31587119499999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -1230,7 +1262,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rVx-v7-Ww5">
-                                                <rect key="frame" x="0.0" y="181" width="375" height="1000"/>
+                                                <rect key="frame" x="0.0" y="182" width="375" height="1000"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="speakersTable" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rg7-2i-Ucg">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -1265,13 +1297,13 @@
                                                                                     <state key="normal" image="message"/>
                                                                                 </button>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sausan Adam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfV-qe-2Dp">
-                                                                                    <rect key="frame" x="120" y="35" width="81.5" height="16"/>
+                                                                                    <rect key="frame" x="120" y="35" width="88.5" height="16"/>
                                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commercial Director at Tech World" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbw-3j-qUw">
-                                                                                    <rect key="frame" x="120" y="59" width="132" height="26"/>
+                                                                                    <rect key="frame" x="120" y="59" width="132" height="27"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="132" id="iPl-m6-yY8"/>
                                                                                     </constraints>
@@ -1413,6 +1445,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qic-XI-5dM" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="TIu-no-p8B"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z8K-uj-op5">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

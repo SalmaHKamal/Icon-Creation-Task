@@ -13,5 +13,6 @@ pod 'SnapKit', '~> 4.0.0'
 pod 'RealmSwift'
 pod 'Toast-Swift', '~> 4.0.0'
 pod 'SwiftyJSON', '~> 4.0'
+pod 'ObjectMapper'
 
 end

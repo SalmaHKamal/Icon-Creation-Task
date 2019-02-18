@@ -20,8 +20,7 @@ class SignUpViewController: UITableViewController {
     @IBOutlet weak var userPass: UITextField!
     @IBOutlet weak var userConfirmPass: UITextField!
     @IBOutlet weak var signupButton: UIButton!
-    
-    
+
     var imagePicker = UIImagePickerController()
     var base64ImageString : String {
         get{
@@ -71,22 +70,26 @@ class SignUpViewController: UITableViewController {
             return
         }
 
-        NetworkServices.signUp(userData: UserModel(_image: base64ImageString ,
-                                                   _name: name ,
-                                                   _email: email,
-                                                   _country: country,
-                                                   _password: password)
+        let userData = UserModel(_image: base64ImageString ,
+                                 _name: name ,
+                                 _email: email,
+                                 _country: country,
+                                 _password: password)
+
+        NetworkServices.signUp(userData: userData
             , success: { (res) in
                 if let value = res as? JSON {
                     if value["status"] == "1" {
-                        self.goToLoginVC()
+                        self.goToAgendaVC()
 //                        saveInDB()
+                        DatabaseManager.sharedInstance.saveUser(user: userData)
                         //save state in user defaults
+                        UserDefaults.standard.set( true , forKey: userDefaultsKeys.isLoggedIn.rawValue)
                     }else{
                         self.showToast(msg: value["MessageText"].stringValue)
                     }
                 }
-                
+
         }) { (error) in
             if let error = error {
                 self.showToast(msg: error.localizedDescription)
@@ -96,13 +99,15 @@ class SignUpViewController: UITableViewController {
         }
 
     }
-    
+
     func showToast(msg : String){
         view.makeToast(msg, duration : 2.0 , position : .center )
     }
     
-    func goToLoginVC(){
-        present(UINavigationController(rootViewController: AgendaViewController()), animated: true, completion: nil)
+    func goToAgendaVC(){
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let agendaVC = mainStoryboard.instantiateViewController(withIdentifier: "agendaVC")
+        present(UINavigationController(rootViewController: agendaVC), animated: true, completion: nil)
     }
     
     @IBAction func selectProfileImg(_ sender: Any) {
