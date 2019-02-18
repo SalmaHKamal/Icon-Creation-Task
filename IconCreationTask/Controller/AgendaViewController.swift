@@ -8,6 +8,8 @@
 
 import UIKit
 import SnapKit
+import Toast_Swift
+import SwiftyJSON
 
 class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,25 +27,70 @@ class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDe
     @IBOutlet weak var dayNum: UILabel!
     @IBOutlet weak var monthName: UILabel!
     @IBOutlet weak var circleView: UIView!
+    @IBOutlet weak var alignTopWithCircleView: NSLayoutConstraint!
+    @IBOutlet weak var timelineTopConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         circleView.layer.cornerRadius = 4
         circleView.layer.masksToBounds = true
+        circleView.backgroundColor = orangeColor
         dayNum.text = "6"
         monthName.text = "Jan"
+//        dateView.isHidden = true
+//        circleView.isHidden = true
+//        alignTopWithCircleView.isActive = false
+//        timelineTopConstraint.constant = 0
+//        
         eventCardTable.delegate = self
         eventCardTable.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "reloadData"), object: nil)
+    }
+    
+    @objc func reloadData(){
+        eventCardTable.reloadData()
     }
 }
 
 class singleEventDetailsCell : UITableViewCell {
     
+    @IBOutlet weak var cellContentView: UIView!
+    var eventTitle = "Introduction"
+    
     override func awakeFromNib() {
         if  let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard {
-            addSubview(eventCard)
+            cellContentView.addSubview(eventCard)
+            eventCard.EventName.text = eventTitle
+            getAgendaData(card: eventCard)
         }else{
             print("couldn't load event card")
         }
+        
+        
+    }
+    
+    func getAgendaData(card : EventCard){
+        NetworkServices.getAgendaList(success: { (value) in
+            if let result = value as? JSON {
+                if result["status"] == "1" {
+                    card.EventName.text = result["data"][0]["data"][0]["title"].stringValue
+                    print(result["data"][0]["data"][0]["title"].stringValue)
+                    NotificationCenter.default.post(name: NSNotification.Name("reloadData"), object: nil)
+//                    self.cellContentView.reloadData()
+                }else{
+                    self.showToast(msg: result["MessageText"].stringValue)
+                }
+            }
+        }) { (error) in
+            if let error = error {
+                self.showToast(msg: error.localizedDescription)
+            }else{
+                self.showToast(msg: "verify that your information is correct or no internet connectivity")
+            }
+        }
+    }
+    
+    func showToast(msg : String){
+        makeToast(msg, duration : 2.0 , position : .center )
     }
     
 }
@@ -53,8 +100,8 @@ class AgendaViewController : UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var centeredView: UIView!
     @IBOutlet weak var parentTableView: UITableView!
-    
     @IBOutlet weak var childTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +110,22 @@ class AgendaViewController : UIViewController {
         
         parentTableView.delegate = self
         parentTableView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "reloadData"), object: nil)
+//        getAgendaData()
 //        displayAgenda()
     }
+    
+    
+    @objc func reloadData(){
+        parentTableView.reloadData()
+    }
+    
+    
 
 }
+
+
 
 extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,6 +139,7 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == parentTableView {
             let cell = parentTableView.dequeueReusableCell(withIdentifier: "agendaCell", for: indexPath) as! SingleAgendaCell
+//            cell.
 //            cell.circleView.layer.cornerRadius = 4
 //            cell.circleView.layer.masksToBounds = true
 //            cell.dayNum.text = "6"

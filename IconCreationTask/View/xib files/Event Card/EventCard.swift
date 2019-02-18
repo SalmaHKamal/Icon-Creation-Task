@@ -15,6 +15,7 @@ class EventCard: UIView {
     @IBOutlet weak var bottomCardView: UIView!
     @IBOutlet weak var addToCalenderLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var EventName: UILabel!
     
     override func awakeFromNib() {
         cardTopView.backgroundColor = lightGrayColor

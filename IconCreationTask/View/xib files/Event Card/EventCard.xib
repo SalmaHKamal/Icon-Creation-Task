@@ -144,6 +144,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="EventName" destination="0f6-oO-t48" id="z7Z-LV-iXe"/>
                 <outlet property="addToCalenderLabel" destination="4ag-eu-0dQ" id="1Iw-8C-nIj"/>
                 <outlet property="bottomCardView" destination="CZn-AJ-nlY" id="oL2-6u-j9a"/>
                 <outlet property="cardTopView" destination="KpZ-LO-qoG" id="tqv-BM-PfE"/>
