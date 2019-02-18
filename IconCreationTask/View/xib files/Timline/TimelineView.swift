@@ -10,6 +10,11 @@ import UIKit
 
 class TimelineView: UIView {
 
+    @IBOutlet weak var timelineView: UIView!
+    
+    override func awakeFromNib() {
+        timelineView.backgroundColor = lineFillColor
+    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

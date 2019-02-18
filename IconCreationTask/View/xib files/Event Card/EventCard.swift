@@ -10,12 +10,19 @@ import UIKit
 
 class EventCard: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var cardTopView: UIView!
+    @IBOutlet weak var bottomCardView: UIView!
+    @IBOutlet weak var addToCalenderLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    override func awakeFromNib() {
+        cardTopView.backgroundColor = lightGrayColor
+        bottomCardView.backgroundColor = normalGrayColor
+        addToCalenderLabel.textColor = blueThemeColor
+        timeLabel.textColor = darkGrayColor
+        cardView.layer.masksToBounds = true
+        cardView.layer.cornerRadius = 10
     }
-    */
 
 }

@@ -6,4 +6,11 @@
 //  Copyright © 2019 Salma Hassan. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UINavigationController {
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
