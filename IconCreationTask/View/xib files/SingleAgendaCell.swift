@@ -55,7 +55,7 @@ class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDe
             
         }
         
-//        eventCardTable.reloadData()
+        eventCardTable.reloadData()
         
     }
     
@@ -64,12 +64,12 @@ class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDe
     //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        for agenda in agendaArray{
-//            if let events = agenda.events {
-//                print("count => \(events.count)")
-//                return events.count
-//            }
-//        }
+        for agenda in agendaArray{
+            if let events = agenda.events {
+                print("count => \(events.count)")
+                return events.count
+            }
+        }
         
         print(cellIndex)
         
@@ -81,18 +81,37 @@ class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = eventCardTable.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! singleEventDetailsCell
-//        for agenda in agendaArray {
-//            if let event = agenda.events {
-//                if event[indexPath.row].addToCalender == "0" {
-//                    cell.eventCard.addToCalenderLabel.text = "Add to my calender"
-//                }else{
-//                    cell.eventCard.addToCalenderLabel.text = "Added to calender"
-//                }
-//                cell.eventCard.timeLabel.text = "\(event[indexPath.row].timeFrom ?? "") - \(event[indexPath.row].timeTo ?? "")"
-//                cell.eventCard.EventName.text = event[indexPath.row].title
-//            }
-//        }
+        for agenda in agendaArray {
+            if let event = agenda.events {
+                if event[indexPath.row].addToCalender == "0" {
+                    cell.eventCard.addToCalenderLabel.text = "Add to my calender"
+                }else{
+                    cell.eventCard.addToCalenderLabel.text = "Added to calender"
+                }
+                cell.eventCard.timeLabel.text = "\(event[indexPath.row].timeFrom ?? "") - \(event[indexPath.row].timeTo ?? "")"
+                cell.eventCard.EventName.text = event[indexPath.row].title
+                dayNum.text = extrackDay(dateString : event[indexPath.row].date ?? "")
+                monthName.text = getMonthName(dateString : event[indexPath.row].date ?? "")
+            }
+        }
         
         return cell
     }
+    
+    func extrackDay(dateString : String) -> String{
+        let dateFormatter = DateFormatter()
+        let calender = Calendar.current
+        return String(calender.component(.day, from: dateFormatter.date(from: dateString) ?? Date()))
+    }
+    
+    func getMonthName(dateString : String) -> String{
+        let dateFormatter = DateFormatter()
+        let calender = Calendar.current
+        let monthNum = calender.component(.month, from: dateFormatter.date(from: dateString) ?? Date())
+        if monthNum > 0 {
+            return DateFormatter().monthSymbols.remove(at: monthNum - 1)
+        }
+        return ""
+    }
+
 }

@@ -94,6 +94,7 @@ class NetworkServices {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.httpBody = try! JSONSerialization.data(withJSONObject: params , options: .prettyPrinted)
+            print(params)
             
             Alamofire.request(request)
                 .responseJSON { (response) in

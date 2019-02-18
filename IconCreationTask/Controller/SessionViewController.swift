@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import SwiftyJSON
 import Toast_Swift
+import SDWebImage
 
 class speakerCell: UITableViewCell {
     
@@ -134,11 +135,11 @@ extension SessionViewController {
         
         cell.speakerName.text = speakersArray[indexPath.row]["name"]
         cell.speakerTitle.text = speakersArray[indexPath.row]["title"]
-//        if let imageName = speakersArray[indexPath.row]["image"]{
-//           cell.speakerImage.image = UIImage(named:imageName)
-//        }else{
+        if let imageName = speakersArray[indexPath.row]["image"]{
+          cell.speakerImage.sd_setImage(with: URL(string: "http://166.62.117.167/Comesa_app/mobileApp/\(imageName)"), placeholderImage: #imageLiteral(resourceName: "man"))
+          }else{
             cell.speakerImage.image = #imageLiteral(resourceName: "man")
-//        }
+        }
 
         return cell
     }

@@ -26,7 +26,6 @@ class AgendaViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarView?.backgroundColor = satusBarColor
-        getAgendaData()
     }
     
 
@@ -43,13 +42,15 @@ class AgendaViewController : UIViewController {
         parentTableView.delegate = self
         parentTableView.dataSource = self
         
-        parentTableView.isHidden = true
-        noEventsView.isHidden = false
+        parentTableView.isHidden = false
+        noEventsView.isHidden = true
         
+        activityIndicatorView.isHidden = true
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
         
-        
+        getAgendaData()
+
         
         if #available(iOS 10.0, *) {
             parentTableView.refreshControl = refreshControl
@@ -128,6 +129,7 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == parentTableView {
+            print("salma")
             print("agenda count => \(agendaArray.count)")
             return agendaArray.count
         }
@@ -140,6 +142,7 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
             let cell = parentTableView.dequeueReusableCell(withIdentifier: "agendaCell", for: indexPath) as! SingleAgendaCell
             cell.cellIndex = indexPath.row
             print("index path => \(cell.cellIndex)")
+            cell.tag = indexPath.row
 //            cell.
 //            cell.circleView.layer.cornerRadius = 4
 //            cell.circleView.layer.masksToBounds = true
@@ -155,8 +158,7 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
         }
 
         return UITableViewCell()
-//        let cell = childTableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
-//        return cell
+
     }
     
     
@@ -196,97 +198,9 @@ extension AgendaViewController {
     }
     
     @objc func showMoreBtnClicked(){
-//        navigationController.pus
-//        navigationController?.show(SessionViewController(), sender: self)
-//        present(SessionViewController(), animated: true, completion: nil)
-//        navigationController?.pushViewController(SessionViewController(), animated: true)
+
     }
-    
-    func displayAgenda(){
-        
-//        let testView = UIView()
-//        testView.backgroundColor = .red
-//        contentView.addSubview(testView)
-//
-//        for _ in 0...20 {
-//            let btn = UIButton()
-//            testView.addSubview(btn)
-//            btn.backgroundColor = .blue
-//            btn.snp.makeConstraints { (mk) in
-//                mk.height.width.equalTo(50)
-//                mk.top.equalTo(btn)
-//                mk.bottom.equalTo(testView.snp_bottomMargin)
-//            }
-//        }
-//
-//        testView.snp.makeConstraints { (make) in
-//            make.width.equalTo(100)
-//            make.bottom.equalTo(contentView.snp_bottomMargin)
-//            make.top.equalTo(contentView.snp_topMargin)
-//        }
-  
-//        if let timelineView = Bundle.main.loadNibNamed("TimelineView", owner: self, options: nil)?.first as? TimelineView {
-//            contentView.addSubview(timelineView)
-//            timelineView.snp.makeConstraints { (maker) in
-//                maker.height.equalTo(1000)
-//                maker.leading.equalTo(contentView.snp_leadingMargin)
-//                maker.top.equalTo(contentView.snp_topMargin)
-//                maker.bottom.equalTo(contentView.snp_bottomMargin)
-//            }
-//        }
-//        guard let dateView = Bundle.main.loadNibNamed("DateView", owner: self, options: nil)?.first as? DateView,
-//        let timelineView = Bundle.main.loadNibNamed("TimelineView", owner: self, options: nil)?.first as? TimelineView,
-//        let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard
-//        else {
-//            displayEmptyView()
-//            return
-//        }
-//
-//        setViewsConstraints(views: timelineView , dateView , eventCard)
-        
-    }
-    
-//    func displayEmptyView(){}
-    
-//    func setViewsConstraints(views : UIView...){
-//
-//
-//        for view in views {
-//            self.view.addSubview(view)
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//        }
-//
-//        let timelineView = views[0]
-//        let dateView = views[1]
-//        let eventView = views[2]
-//
-//        let dateLeading = dateView.leadingAnchor.constraint(equalToSystemSpacingAfter: self.centeredView.leadingAnchor, multiplier: 1)
-//        let dateTop = dateView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
-//
-//        let timelineLeading = timelineView.leadingAnchor.constraint(equalTo: dateView.trailingAnchor, constant: -4)
-//        let timelineTop = timelineView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
-//        let timelineHieght = timelineView.heightAnchor.constraint(equalToConstant: 10 * 100)
-//        let timelineBottom = timelineView.bottomAnchor.constraint(equalTo: centeredView.bottomAnchor, constant: 16)
-//
-//        let eventLeading = eventView.leadingAnchor.constraint(equalTo: timelineView.trailingAnchor, constant: 10)
-//        let eventTop = eventView.topAnchor.constraint(equalToSystemSpacingBelow: self.centeredView.topAnchor, multiplier: 1)
-//        let eventHeight = eventView.heightAnchor.constraint(equalToConstant: 150)
-//        let eventWidth = eventView.widthAnchor.constraint(equalToConstant: 400)
-//
-//        NSLayoutConstraint.activate([dateLeading , dateTop , timelineLeading , timelineTop , timelineHieght, eventLeading , eventTop , timelineBottom , eventWidth , eventHeight])
-//
-//
-////        let newView = UIView()
-////        newView.backgroundColor = UIColor.red
-////        view.addSubview(newView)
-////
-////        newView.translatesAutoresizingMaskIntoConstraints = false
-////        let horizontalConstraint = newView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-////        let verticalConstraint = newView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-////        let widthConstraint = newView.widthAnchor.constraint(equalToConstant: 100)
-////        let heightConstraint = newView.heightAnchor.constraint(equalToConstant: 100)
-////        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-//    }
+
 
 }
 

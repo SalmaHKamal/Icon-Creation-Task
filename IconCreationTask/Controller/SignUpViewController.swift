@@ -55,48 +55,49 @@ class SignUpViewController: UITableViewController {
     }
     
     @IBAction func signUp(_ sender: Any) {
-        guard let name = userName.text , name != "" ,
-        let email = userEmail.text , email != "" ,
-        let country = userCountry.text , country != "",
-        let password = userPass.text , password != "" ,
-        let confirm = userConfirmPass.text , confirm != "" , password == confirm
-        else {
-            if userConfirmPass.text != userPass.text {
-                showToast(msg: "passwords didn't match")
-            }else{
-                showToast(msg: "All fields are required")
-            }
-
-            return
-        }
-
-        let userData = UserModel(_image: base64ImageString ,
-                                 _name: name ,
-                                 _email: email,
-                                 _country: country,
-                                 _password: password)
-
-        NetworkServices.signUp(userData: userData
-            , success: { (res) in
-                if let value = res as? JSON {
-                    if value["status"] == "1" {
-                        self.goToAgendaVC()
-//                        saveInDB()
-                        DatabaseManager.sharedInstance.saveUser(user: userData)
-                        //save state in user defaults
-                        UserDefaults.standard.set( true , forKey: userDefaultsKeys.isLoggedIn.rawValue)
-                    }else{
-                        self.showToast(msg: value["MessageText"].stringValue)
-                    }
-                }
-
-        }) { (error) in
-            if let error = error {
-                self.showToast(msg: error.localizedDescription)
-            }else{
-                self.showToast(msg: "verify that your information is correct or no internet connectivity")
-            }
-        }
+        goToAgendaVC()
+//        guard let name = userName.text , name != "" ,
+//        let email = userEmail.text , email != "" ,
+//        let country = userCountry.text , country != "",
+//        let password = userPass.text , password != "" ,
+//        let confirm = userConfirmPass.text , confirm != "" , password == confirm
+//        else {
+//            if userConfirmPass.text != userPass.text {
+//                showToast(msg: "passwords didn't match")
+//            }else{
+//                showToast(msg: "All fields are required")
+//            }
+//
+//            return
+//        }
+//
+//        let userData = UserModel(_image: base64ImageString ,
+//                                 _name: name ,
+//                                 _email: email,
+//                                 _country: country,
+//                                 _password: password)
+//
+//        NetworkServices.signUp(userData: userData
+//            , success: { (res) in
+//                if let value = res as? JSON {
+//                    if value["status"] == "1" {
+//                        self.goToAgendaVC()
+////                        saveInDB()
+//                        DatabaseManager.sharedInstance.saveUser(user: userData)
+//                        //save state in user defaults
+//                        UserDefaults.standard.set( true , forKey: userDefaultsKeys.isLoggedIn.rawValue)
+//                    }else{
+//                        self.showToast(msg: value["MessageText"].stringValue)
+//                    }
+//                }
+//
+//        }) { (error) in
+//            if let error = error {
+//                self.showToast(msg: error.localizedDescription)
+//            }else{
+//                self.showToast(msg: "verify that your information is correct or no internet connectivity")
+//            }
+//        }
 
     }
 

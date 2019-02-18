@@ -31,11 +31,11 @@ class DatabaseManager {
     }
     
     func saveUser(user: UserModel){
-        
-        //delet any old data
-        deleteAll()
-        
+
         if let realm = realmInstance(){
+            //delet any old data
+            
+//            deleteAll()
             let newUser = User()
             newUser.name = user.name
             newUser.email = user.email

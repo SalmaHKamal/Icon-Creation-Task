@@ -6,6 +6,9 @@ PODS:
   - Realm/Headers (3.13.1)
   - RealmSwift (3.13.1):
     - Realm (= 3.13.1)
+  - SDWebImage (4.4.5):
+    - SDWebImage/Core (= 4.4.5)
+  - SDWebImage/Core (4.4.5)
   - SearchTextField (1.2.2)
   - SnapKit (4.0.1)
   - SwiftyJSON (4.2.0)
@@ -15,6 +18,7 @@ DEPENDENCIES:
   - Alamofire
   - ObjectMapper
   - RealmSwift
+  - SDWebImage
   - SearchTextField
   - SnapKit (~> 4.0.0)
   - SwiftyJSON (~> 4.0)
@@ -26,6 +30,7 @@ SPEC REPOS:
     - ObjectMapper
     - Realm
     - RealmSwift
+    - SDWebImage
     - SearchTextField
     - SnapKit
     - SwiftyJSON
@@ -36,11 +41,12 @@ SPEC CHECKSUMS:
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 147ea270a2f412375e5ddd1d8f26ad8df80cb41d
+PODFILE CHECKSUM: 7b1e3a144e0dbe13070fea32476a3bd7a56465db
 
 COCOAPODS: 1.5.3
