@@ -216,9 +216,9 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
             if indexPath.row == 0 {
                 cell.circleView.isHidden = false
                 cell.timelineTopConstraint.constant = 60
-                cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].date ?? "") //.events![indexPath.row].date ?? ""
+                cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].date ?? "")
                 cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].date ?? ""
-                ) //.events![indexPath.row].date ?? ""
+                )
             } else {
                 cell.monthName.text = ""
                 cell.dayNum.text = ""
@@ -304,20 +304,7 @@ extension AgendaViewController {
         let calender = Calendar.current
         return String(calender.component(.day, from: dateFormatter.date(from: dateString) ?? Date()))
     }
-    
-    //    func extrackDay(dateString : String?) -> String{
-    //
-    //        let dateFormatter = DateFormatter()
-    //        let calender = Calendar.current
-    //        guard let dateString = dateString else {
-    //            return ""
-    //        }
-    //
-    //        guard let formattedDate = dateFormatter.date(from: dateString) else {
-    //            return ""
-    //        }
-    //        return String(calender.component(.day, from: formattedDate))
-    //    }
+
     
     func getMonthName(dateString : String) -> String{
         let dateFormatter = DateFormatter()
@@ -329,22 +316,7 @@ extension AgendaViewController {
         }
         return ""
     }
-    
-    //    func getMonthName(dateString : String?) -> String{
-    //        let dateFormatter = DateFormatter()
-    //        let calender = Calendar.current
-    //
-    //        guard let dateString = dateString , let formattedDate = dateFormatter.date(from: dateString) else {
-    //            return ""
-    //        }
-    //
-    //        let monthNum = calender.component(.month, from: formattedDate)
-    //        if monthNum > 0 {
-    //            return DateFormatter().monthSymbols.remove(at: monthNum - 1)
-    //        }
-    //
-    //        return ""
-    //    }
+ 
     
     
 }
