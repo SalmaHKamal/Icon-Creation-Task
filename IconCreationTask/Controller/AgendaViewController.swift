@@ -213,8 +213,8 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
             cell.accessoryType = .none
             cell.selectionStyle = .none
             print("section => \(indexPath.section) , row => \(indexPath.row)")
-//            cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
-//            cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
+            cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
+            cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
             
    
             return cell
