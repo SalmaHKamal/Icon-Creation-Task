@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 @objcMembers class User : Object {
-    dynamic var id = "0"
+    dynamic var id = ""
     dynamic var name = ""
     dynamic var email = ""
     dynamic var password = ""
@@ -19,8 +19,9 @@ import RealmSwift
     dynamic var image = ""
     dynamic var token = ""
     dynamic var title = ""
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
+    dynamic var agendas = List<Agenda>()
+ 
+//    override static func primaryKey() -> String? {
+//        return "id"
+//    }
 }

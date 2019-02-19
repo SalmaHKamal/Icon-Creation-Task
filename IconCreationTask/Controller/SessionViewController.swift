@@ -22,13 +22,16 @@ class speakerCell: UITableViewCell {
 
 class SessionViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var noSpeakersView: UILabel!
     @IBOutlet weak var addToCalenderLbl: UILabel!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var speakersLabel: UILabel!
     
     var speakersArray = [[String:String]]()
     var added = false
+    var selectedData = (AgendaModel(), EventModel())
     
     @IBAction func addToCalender(_ sender: Any) {
         
@@ -62,39 +65,53 @@ class SessionViewController: UIViewController ,UITableViewDelegate , UITableView
         mainTableView.dataSource = self
         mainTableView.rowHeight = UITableView.automaticDimension
         mainTableView.estimatedRowHeight = 600
+        mainTableView.isHidden = true
         getListOfSpeakers()
         addToCalenderLbl.textColor = blueThemeColor
         speakersLabel.textColor = blueThemeColor
+        noSpeakersView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+       
     }
     
     func getListOfSpeakers(){
-        NetworkServices.getSpeakersList(success: { (res) in
+        NetworkServices.getSpeakersList(agendaID : selectedData.0.id ?? "" ,success: { (res) in
             if let speakers = res as? JSON {
-                if speakers["status"] == "1" {
+                if speakers["status"] == "1"{
                 
-                    for speaker in speakers["data"] {
-                        self.speakersArray.append(["id": speaker.1["id"].stringValue,
-                                              "type" : speaker.1["ityped"].stringValue,
-                                              "title" : speaker.1["title"].stringValue,
-                                              "image" : speaker.1["image"].stringValue,
-                                              "name" : speaker.1["name"].stringValue,
-                                              "bio" : speaker.1["bio"].stringValue])
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.mainTableView.reloadData()
+                    if speakers["data"].count > 0 {
+                        for speaker in speakers["data"] {
+                            self.speakersArray.append(["id": speaker.1["id"].stringValue,
+                                                       "type" : speaker.1["ityped"].stringValue,
+                                                       "title" : speaker.1["title"].stringValue,
+                                                       "image" : speaker.1["image"].stringValue,
+                                                       "name" : speaker.1["name"].stringValue,
+                                                       "bio" : speaker.1["bio"].stringValue])
+                        }
+                       
+                        DispatchQueue.main.async {
+                            self.mainTableView.reloadData()
+                        }
+                        self.mainTableView.isHidden = false
+                    }else{
+                        self.noSpeakersView.isHidden = false
                     }
                 }else{
                     self.showToast(msg: speakers["MessageText"].stringValue)
                 }
             }
+            self.activityIndicator.stopAnimating()
         }) { (error) in
+            self.activityIndicator.stopAnimating()
             if let error = error {
                 self.showToast(msg: error.localizedDescription)
             }else{
                 self.showToast(msg: "verify that your information is correct or no internet connectivity")
             }
         }
+        
     }
     
     func showToast(msg : String){

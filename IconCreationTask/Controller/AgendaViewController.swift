@@ -22,6 +22,7 @@ class AgendaViewController : UIViewController {
     var eventName = "Introduction"
     var agendaArray = [AgendaModel]()
     var eventArray = [EventModel]()
+    var eventCard : EventCard!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,9 +42,12 @@ class AgendaViewController : UIViewController {
         
         parentTableView.delegate = self
         parentTableView.dataSource = self
+        
+        parentTableView.estimatedRowHeight = 600
+        parentTableView.rowHeight = UITableView.automaticDimension
 
         parentTableView.isHidden = true
-        noEventsView.isHidden = false
+        noEventsView.isHidden = true
         
         activityIndicatorView.isHidden = false
         activityIndicatorView.hidesWhenStopped = true
@@ -51,7 +55,6 @@ class AgendaViewController : UIViewController {
         
         getAgendaData()
 
-        
         if #available(iOS 10.0, *) {
             parentTableView.refreshControl = refreshControl
         } else {
@@ -62,10 +65,16 @@ class AgendaViewController : UIViewController {
 
     }
     
-
+    func loadEventCard(){
+        if Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard != nil {
+            eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard
+        }else{
+            print("couldn't load nib")
+        }
+    }
     
     @objc func refreshAgendaData(){
-        agendaArray = []
+        
         getAgendaData()
     }
     
@@ -73,13 +82,18 @@ class AgendaViewController : UIViewController {
         
         
         NetworkServices.getAgendaList(success: { (value) in
+           
+            
             if let result = value as? JSON {
+                var agendaResultArray = [AgendaModel]()
                 if result["status"] == "1" {
+                    
                     for agenda in result["data"]{
-                        print("salma agenda => \(agenda)")
+                        
+                        var eventResultArray = [EventModel]()
                         for event in agenda.1["data"] {
-                            print("salma event for one agenda")
-                            self.eventArray.append(EventModel(_id: event.1["id"].stringValue,
+                            
+                            eventResultArray.append(EventModel(_id: event.1["id"].stringValue,
                                                          _title: event.1["title"].stringValue,
                                                          _timeFrom: event.1["time_from"].stringValue,
                                                          _timeTo: event.1["time_to"].stringValue ,
@@ -88,15 +102,21 @@ class AgendaViewController : UIViewController {
                                                          _date: event.1["date"].stringValue))
                         }
                         
-                        self.agendaArray.append(AgendaModel(_id: agenda.1["id"].stringValue ,
+                        agendaResultArray.append(AgendaModel(_id: agenda.1["id"].stringValue ,
                                                        _date: agenda.1["date"].stringValue ,
-                                                       _events: self.eventArray))
+                                                       _events: eventResultArray))
+                        
+                       
                     }
                    
-//                    self.eventName = result["data"][0]["data"][0]["title"].stringValue
-                    self.showTable()
-                    self.reloadData()
-                    NotificationCenter.default.post(name: NSNotification.Name("updateCell"), object: nil , userInfo : ["agenda": self.agendaArray])
+                    if agendaResultArray.count > 0 {
+                        self.showTable()
+                        self.reloadData(data: agendaResultArray)
+                        self.saveDataInRealm(data : agendaResultArray)
+                    }else{
+                        self.noEventsView.isHidden = false
+                    }
+
                 }else{
                     self.showToast(msg: result["MessageText"].stringValue)
                 }
@@ -110,9 +130,35 @@ class AgendaViewController : UIViewController {
         }
     }
     
+    func saveDataInRealm(data : [AgendaModel]){
+        DispatchQueue.global(qos: .userInteractive).async {
+            if !DatabaseManager.sharedInstance.updateAgendasWithUserID(listOfAgendas: data) {
+                DispatchQueue.main.async {
+                    self.showToast(msg: "Something wrong happened!")
+                }
+            }
+//            if !DatabaseManager.sharedInstance.saveAgenda(data : data) {
+//                DispatchQueue.main.async {
+//                    self.showToast(msg: "Something wrong happened!")
+//                }
+//            }
+        }
+    }
     
-    @objc func reloadData(){
+    
+    func reloadData(data : [AgendaModel]){
+        
+        agendaArray = data
+        for agenda in agendaArray {
+            if let events = agenda.events {
+                for event in events {
+                    eventArray.append(event)
+                }
+            }
+        }
+        
         parentTableView.reloadData()
+        
     }
     
     @objc func showTable(){
@@ -129,12 +175,32 @@ class AgendaViewController : UIViewController {
 
 
 extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return agendaArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let sessionVC = mainStoryboard.instantiateViewController(withIdentifier: "sesstionVC") as? SessionViewController {
+            
+            sessionVC.selectedData = (agendaArray[indexPath.section],eventArray[indexPath.row])
+            show(sessionVC, sender: self)
+        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == parentTableView {
-            print("salma")
-            print("agenda count => \(agendaArray.count)")
-            return agendaArray.count
+//            var count = 0
+//            for agenda in agendaArray {
+//                if let events = agenda.events {
+//                    count += events.count
+//                }
+//            }
+//            print("\(count)")
+            if let events = agendaArray[section].events {
+                return events.count
+            }
         }
         
         return 0
@@ -143,42 +209,29 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == parentTableView {
             let cell = parentTableView.dequeueReusableCell(withIdentifier: "agendaCell", for: indexPath) as! SingleAgendaCell
-            cell.cellIndex = indexPath.row
             
-            cell.dayNum.text = agendaArray[indexPath.row].date
-//            print("index path => \(cell.cellIndex)")
-            cell.tag = indexPath.row
-//            cell.
-//            cell.circleView.layer.cornerRadius = 4
-//            cell.circleView.layer.masksToBounds = true
-//            cell.dayNum.text = "salma"
-//            cell.monthName.text = "hassan"
-            cell.eventCardTable.reloadData()
-//            if let c = cell.eventCardTable.cellForRow(at: indexPath) as? singleEventDetailsCell
-//            {c.eventCard.timeLabel.text = "salmaaaa"}
-            if indexPath.row != 0 {
-//                cell.alignTopWithCircleView.isActive = false
-//                cell.timelineTopConstraint.constant = 0
-//                cell.timelineBottomSpace.constant = 0
-            }
+            cell.accessoryType = .none
+            cell.selectionStyle = .none
+            print("section => \(indexPath.section) , row => \(indexPath.row)")
+//            cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
+//            cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
+            
+   
             return cell
-            
         }
 
         return UITableViewCell()
 
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 600
-    }
-    
-    
+
+
 }
 
 extension AgendaViewController {
     
     func initNavigationBar() {
+        
         //title
         navigationItem.title = "Agenda"
         let titleTxtAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white,
@@ -212,6 +265,52 @@ extension AgendaViewController {
     @objc func showMoreBtnClicked(){
 
     }
+    
+    func extrackDay(dateString : String) -> String{
+        let dateFormatter = DateFormatter()
+        let calender = Calendar.current
+        return String(calender.component(.day, from: dateFormatter.date(from: dateString) ?? Date()))
+    }
+    
+//    func extrackDay(dateString : String?) -> String{
+//
+//        let dateFormatter = DateFormatter()
+//        let calender = Calendar.current
+//        guard let dateString = dateString else {
+//            return ""
+//        }
+//
+//        guard let formattedDate = dateFormatter.date(from: dateString) else {
+//            return ""
+//        }
+//        return String(calender.component(.day, from: formattedDate))
+//    }
+    
+    func getMonthName(dateString : String) -> String{
+        let dateFormatter = DateFormatter()
+        let calender = Calendar.current
+        let monthNum = calender.component(.month, from: dateFormatter.date(from: dateString) ?? Date())
+        if monthNum > 0 {
+            return DateFormatter().monthSymbols.remove(at: monthNum - 1)
+        }
+        return ""
+    }
+    
+//    func getMonthName(dateString : String?) -> String{
+//        let dateFormatter = DateFormatter()
+//        let calender = Calendar.current
+//
+//        guard let dateString = dateString , let formattedDate = dateFormatter.date(from: dateString) else {
+//            return ""
+//        }
+//
+//        let monthNum = calender.component(.month, from: formattedDate)
+//        if monthNum > 0 {
+//            return DateFormatter().monthSymbols.remove(at: monthNum - 1)
+//        }
+//
+//        return ""
+//    }
 
 
 }

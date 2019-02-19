@@ -18,6 +18,10 @@ class EventModel : Mappable {
     var trackId : String?
     var addToCalender : String?
     var date : String?
+    
+    init() {
+        
+    }
 
     init(_id : String , _title : String , _timeFrom : String , _timeTo : String , _trackId : String , _addToCalender : String , _date : String) {
         id = _id

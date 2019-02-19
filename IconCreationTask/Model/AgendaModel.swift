@@ -19,6 +19,10 @@ class AgendaModel : Mappable {
         
     }
     
+    init() {
+        
+    }
+    
     init(_id : String , _date : String , _events : [EventModel]) {
         id = _id
         date = _date

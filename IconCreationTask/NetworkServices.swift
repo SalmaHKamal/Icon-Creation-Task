@@ -111,7 +111,7 @@ class NetworkServices {
         }
     }
     
-    class func getSpeakersList(success: succussResult? , failure : failureResult?){
+    class func getSpeakersList(agendaID : String , success: succussResult? , failure : failureResult?){
         if Connectivity.isConnectedToInternet(){
             guard let url = URL(string: "http://166.62.117.167/Comesa_app/mobileApp/getAgendaSpeakers.php")
                 else{
@@ -120,7 +120,7 @@ class NetworkServices {
             
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            request.httpBody = try! JSONSerialization.data(withJSONObject: ["lang":"en", "agenda_id": 1], options: .prettyPrinted)
+            request.httpBody = try! JSONSerialization.data(withJSONObject: ["lang":"en", "agenda_id": "1"], options: .prettyPrinted)
             
             Alamofire.request(request)
                 .responseJSON { (response) in

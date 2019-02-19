@@ -31,7 +31,7 @@ class DatabaseManager {
     }
     
     func saveUser(user: UserModel){
-
+        
         if let realm = realmInstance(){
             //delet any old data
             
@@ -46,7 +46,7 @@ class DatabaseManager {
             newUser.token = ""
             newUser.title = ""
             
-            // Persist your data easily
+            
             try! realm.write {
                 realm.add(newUser)
                 print("realm => \(String(describing: realm.objects(User.self).first))")
@@ -78,5 +78,82 @@ class DatabaseManager {
         return nil
     }
     
+//    func saveAgenda(data : [AgendaModel]) -> Bool {
+//        if let realm = realmInstance() , realm.objects(User.self).count == 1 {
+//            try? realm.write {
+//                if let user = getUser() {
+//                    user.agendas = List<Agenda>()
+//                    for agenda in data {
+//                        let agendaModel = Agenda()
+//                        agendaModel.id = agenda.id ?? ""
+//                        agendaModel.date = agenda.date ?? ""
+//
+//                        for event in agenda.events! {
+//                            let eventModel = Event()
+//                            eventModel.id = event.id ?? ""
+//                            eventModel.addToCalender = event.addToCalender ?? "0"
+//                            eventModel.date = event.date ?? ""
+//                            eventModel.timeFrom = event.timeFrom ?? ""
+//                            eventModel.timeTo = event.timeTo ?? ""
+//                            eventModel.title = event.title ?? ""
+//                            eventModel.trackId = event.trackId ?? ""
+//
+//                            agendaModel.events.append(eventModel)
+//                        }
+//
+//                        user.agendas.append(agendaModel)
+//                    }
+//
+//                    realm.add(user)
+//                    print("realm => \(String(describing: realm.objects(User.self).first))")
+//                }
+//            }
+//        }else {
+//            return false
+//        }
+//
+//        return false
+//    }
+    
+    
+    
+    func updateAgendasWithUserID(listOfAgendas: [AgendaModel]) -> Bool{
+        if let realm = realmInstance() , realm.objects(User.self).count == 1 , let user = getUser(){
+            do{
+                try realm.write {
+                    for agenda in listOfAgendas {
+                        let agendaModel = Agenda()
+                        agendaModel.id = agenda.id ?? ""
+                        agendaModel.date = agenda.date ?? ""
+                        agendaModel.userId = user.id
+                        
+                        for event in agenda.events! {
+                            let eventModel = Event()
+                            eventModel.id = event.id ?? ""
+                            eventModel.addToCalender = event.addToCalender ?? "0"
+                            eventModel.date = event.date ?? ""
+                            eventModel.timeFrom = event.timeFrom ?? ""
+                            eventModel.timeTo = event.timeTo ?? ""
+                            eventModel.title = event.title ?? ""
+                            eventModel.trackId = event.trackId ?? ""
+                            eventModel.agendaId = agenda.id
+                            
+                            realm.add(eventModel)
+                            
+                        }
+                        
+                        realm.add(agendaModel)
+                    }
+                }
+                return true
+            }catch{
+                print("realm error => \(error.localizedDescription)")
+                return false
+            }
+ 
+        }else{
+            return false
+        }
+    }
     
 }

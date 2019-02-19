@@ -21,7 +21,7 @@ extension AppDelegate {
     
     func configRealm(){
         
-        let schemaVer : UInt64 = 1
+        let schemaVer : UInt64 = 4
         let config = Realm.Configuration(
             schemaVersion: schemaVer,
             migrationBlock: { migration, oldSchemaVersion in

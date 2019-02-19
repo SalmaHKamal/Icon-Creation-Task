@@ -25,11 +25,14 @@
 		80C563B52216B2A20038B9DF /* DateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C563B42216B2A20038B9DF /* DateView.xib */; };
 		80C563B82216B3610038B9DF /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C563B72216B3610038B9DF /* DateView.swift */; };
 		80C563BB2216BC200038B9DF /* TimelineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C563BA2216BC200038B9DF /* TimelineView.xib */; };
+		80EF820B221C0E5000BC6FA0 /* Agenda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF820A221C0E5000BC6FA0 /* Agenda.swift */; };
+		80EF820D221C0ED300BC6FA0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF820C221C0ED300BC6FA0 /* Event.swift */; };
 		80F275142216CD5400864D59 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F275132216CD5400864D59 /* TimelineView.swift */; };
 		80F275182216E4FA00864D59 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F275172216E4FA00864D59 /* SessionViewController.swift */; };
 		80F2D7F3221563E7003097EE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F2221563E7003097EE /* SignUpViewController.swift */; };
 		80F2D7F722157EEF003097EE /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F622157EEF003097EE /* NetworkServices.swift */; };
 		80F2D7F922157F43003097EE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2D7F822157F43003097EE /* UserModel.swift */; };
+		80F3F5B2221BBD12000891FA /* EventViewInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3F5B1221BBD12000891FA /* EventViewInitializer.swift */; };
 		80F6984F221A888200EECE4B /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6984E221A888200EECE4B /* DatabaseManager.swift */; };
 		80F69851221A896D00EECE4B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F69850221A896D00EECE4B /* User.swift */; };
 		80F69853221A8EDE00EECE4B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F69852221A8EDE00EECE4B /* UserDefaultsManager.swift */; };
@@ -66,11 +69,14 @@
 		80C563B42216B2A20038B9DF /* DateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateView.xib; sourceTree = "<group>"; };
 		80C563B72216B3610038B9DF /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		80C563BA2216BC200038B9DF /* TimelineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineView.xib; sourceTree = "<group>"; };
+		80EF820A221C0E5000BC6FA0 /* Agenda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agenda.swift; sourceTree = "<group>"; };
+		80EF820C221C0ED300BC6FA0 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		80F275132216CD5400864D59 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		80F275172216E4FA00864D59 /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		80F2D7F2221563E7003097EE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		80F2D7F622157EEF003097EE /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		80F2D7F822157F43003097EE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		80F3F5B1221BBD12000891FA /* EventViewInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewInitializer.swift; sourceTree = "<group>"; };
 		80F6984E221A888200EECE4B /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		80F69850221A896D00EECE4B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		80F69852221A8EDE00EECE4B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -164,6 +170,7 @@
 			children = (
 				80C563B32216B2660038B9DF /* xib files */,
 				800D0D762215456C002728C8 /* Main.storyboard */,
+				80F3F5B1221BBD12000891FA /* EventViewInitializer.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				80F69850221A896D00EECE4B /* User.swift */,
+				80EF820A221C0E5000BC6FA0 /* Agenda.swift */,
+				80EF820C221C0ED300BC6FA0 /* Event.swift */,
 			);
 			path = "Realm models";
 			sourceTree = "<group>";
@@ -416,12 +425,15 @@
 				80FF302322177565009CC5CB /* UIColorEx.swift in Sources */,
 				80316B68221686A2008AFDAA /* AgendaViewController.swift in Sources */,
 				80316B6D22168DE3008AFDAA /* UIApplicationEx.swift in Sources */,
+				80EF820D221C0ED300BC6FA0 /* Event.swift in Sources */,
 				80F69851221A896D00EECE4B /* User.swift in Sources */,
 				80C563B82216B3610038B9DF /* DateView.swift in Sources */,
 				801970E32219874700749CE9 /* AgendaTableViewController.swift in Sources */,
 				80F275182216E4FA00864D59 /* SessionViewController.swift in Sources */,
 				80F69859221ACE7B00EECE4B /* SingleAgendaCell.swift in Sources */,
 				80FF302122176A32009CC5CB /* SignupViewControllerEx.swift in Sources */,
+				80F3F5B2221BBD12000891FA /* EventViewInitializer.swift in Sources */,
+				80EF820B221C0E5000BC6FA0 /* Agenda.swift in Sources */,
 				80B4915F2215A8A100DD25D3 /* Constants.swift in Sources */,
 				80316B6B22168C6C008AFDAA /* NavigationControllerEx.swift in Sources */,
 				80F69855221AAE5500EECE4B /* EventModel.swift in Sources */,
