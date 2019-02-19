@@ -191,13 +191,6 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == parentTableView {
-//            var count = 0
-//            for agenda in agendaArray {
-//                if let events = agenda.events {
-//                    count += events.count
-//                }
-//            }
-//            print("\(count)")
             if let events = agendaArray[section].events {
                 return events.count
             }
@@ -268,6 +261,7 @@ extension AgendaViewController {
     
     func extrackDay(dateString : String) -> String{
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let calender = Calendar.current
         return String(calender.component(.day, from: dateFormatter.date(from: dateString) ?? Date()))
     }
@@ -288,6 +282,7 @@ extension AgendaViewController {
     
     func getMonthName(dateString : String) -> String{
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let calender = Calendar.current
         let monthNum = calender.component(.month, from: dateFormatter.date(from: dateString) ?? Date())
         if monthNum > 0 {
