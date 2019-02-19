@@ -30,10 +30,9 @@ class SessionViewController: UIViewController ,UITableViewDelegate , UITableView
     @IBOutlet weak var speakersLabel: UILabel!
     
     @IBOutlet weak var eventTime: UILabel!
-    @IBOutlet weak var eventDate: UIView!
+    @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventTitle: UILabel!
     var speakersArray = [[String:String]]()
-    var added = false
     var selectedData = (AgendaModel(), EventModel())
     
     @IBAction func addToCalender(_ sender: Any) {
@@ -41,16 +40,19 @@ class SessionViewController: UIViewController ,UITableViewDelegate , UITableView
         NetworkServices.addToCalender(success: { (res) in
             if let response = res as? JSON {
                 if response["status"] == "1" {
-                    if self.added {
+                    if self.selectedData.1.addToCalender == "0" {
                         self.addBtn.setImage(#imageLiteral(resourceName: "tick-inside-a-circle"), for: .normal)
                         self.addToCalenderLbl.text = "Added to calender"
+                        self.selectedData.1.addToCalender = "1"
                     }else{
                         self.addBtn.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
                         self.addToCalenderLbl.text = "Add to my calender"
+                        self.selectedData.1.addToCalender = "0"
                     }
-                    self.added = !self.added
                 }
             }
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refetchData"), object: nil)
         }) { (error) in
             if let error = error {
                 self.showToast(msg: error.localizedDescription)
@@ -84,7 +86,55 @@ class SessionViewController: UIViewController ,UITableViewDelegate , UITableView
     func initEventView(){
         let event = selectedData.1
         eventTitle.text = event.title
-        eventTime.text = "\(event.timeFrom ?? "") \(event.timeTo ?? "" ))"
+        eventTime.text = "\(event.timeFrom ?? "") - \(event.timeTo ?? "" )"
+        eventDate.text = formateDate(dateString : event.date)
+        
+        if event.addToCalender == "0" {
+            self.addBtn.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
+            self.addToCalenderLbl.text = "Add to my calender"
+        }else{
+            self.addBtn.setImage(#imageLiteral(resourceName: "tick-inside-a-circle"), for: .normal)
+            self.addToCalenderLbl.text = "Added to calender"
+        }
+    }
+    
+    func formateDate(dateString : String?) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let dateString = dateString , let date = dateFormatter.date(from: dateString){
+            let calender = Calendar.current
+            let dayName = getDayName(dateString: dateString)
+            let dayNum = calender.component(.day, from: date)
+            let month = getMonthName(monthNum : calender.component(.month, from: date))
+            let year = calender.component(.year, from: date)
+            
+            return "\(dayName),\(dayNum)\(month),\(year)"
+            
+        }else{
+            return ""
+        }
+    }
+    
+    func getDayName(dateString : String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        guard let date = dateFormatter.date(from: dateString) else {
+            return ""
+        }
+        
+        dateFormatter.dateFormat = "EEEE"
+        let dayName = dateFormatter.string(from: date)
+        return dayName
+        
+    }
+    
+    
+    func getMonthName(monthNum : Int) -> String{
+        if monthNum > 0 {
+            return DateFormatter().monthSymbols.remove(at: monthNum - 1)
+        }
+        return ""
     }
     
     func getListOfSpeakers(){

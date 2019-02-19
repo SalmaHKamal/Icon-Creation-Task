@@ -1397,8 +1397,8 @@
                         <outlet property="activityIndicator" destination="eS0-oq-Hvy" id="D8F-eo-A9F"/>
                         <outlet property="addBtn" destination="Obg-61-TG0" id="6Ph-hv-Xth"/>
                         <outlet property="addToCalenderLbl" destination="EGo-84-Gm8" id="3sS-Gk-0Jo"/>
-                        <outlet property="eventDate" destination="aKQ-ft-GqW" id="qqK-fB-5bz"/>
-                        <outlet property="eventTime" destination="uyK-oq-Kdh" id="38E-DW-lz3"/>
+                        <outlet property="eventDate" destination="uyK-oq-Kdh" id="fd7-NV-w7S"/>
+                        <outlet property="eventTime" destination="aKQ-ft-GqW" id="CRg-bt-Jhl"/>
                         <outlet property="eventTitle" destination="Ihd-4j-9rp" id="cSu-gx-o5j"/>
                         <outlet property="mainTableView" destination="rg7-2i-Ucg" id="Z08-iz-EVa"/>
                         <outlet property="noSpeakersView" destination="FlH-pI-1IR" id="bPH-BI-grq"/>

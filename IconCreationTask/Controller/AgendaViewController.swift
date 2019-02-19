@@ -55,6 +55,12 @@ class AgendaViewController : UIViewController {
         
         refreshControl.addTarget(self, action: #selector(refreshAgendaData), for: .valueChanged)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refetchData), name: NSNotification.Name(rawValue: "refetchData"), object: nil)
+        
+    }
+    
+    @objc func refetchData(){
+        refreshAgendaData()
     }
     
     func loadEventCard(){
@@ -193,6 +199,7 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
             cell.accessoryType = .none
             cell.selectionStyle = .none
             
+            cell.eventView.eventCard?.timeLabel.text = "salma"
             cell.updateData(data: agendaArray[indexPath.section].events![indexPath.row])
             
             if indexPath.row == 0 {
