@@ -16,15 +16,13 @@ class EventViewInitializer: UIView {
     }
 
     func loadEventCard() {
-        if Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard != nil {
+        if let event2 = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard  {
             
-            guard let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard else {
-                return
-            }
+            eventCard = event2
             
-            addSubview(eventCard)
+            addSubview(eventCard!)
     
-            eventCard.snp.makeConstraints { (make) in
+            eventCard!.snp.makeConstraints { (make) in
 //                make.centerY.equalTo(self)
                 make.top.equalTo(snp_topMargin)
                 make.bottom.equalTo(snp_bottomMargin)
@@ -37,9 +35,9 @@ class EventViewInitializer: UIView {
         }
     }
     
-    func updateData(data: EventModel) {
-        if let card = eventCard {
-            card.updateData(with: data)
-        }
-    }
+//    func updateData(data: EventModel) {
+//        if let card = eventCard {
+//            card.updateData(with: data)
+//        }
+//    }
 }

@@ -196,17 +196,29 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
         if tableView == parentTableView {
             let cell = parentTableView.dequeueReusableCell(withIdentifier: "agendaCell", for: indexPath) as! SingleAgendaCell
             
+//            let singleAgenda = agendaArray[indexPath.section]
+            let singleEvent = agendaArray[indexPath.section].events![indexPath.row]
             cell.accessoryType = .none
             cell.selectionStyle = .none
             
-            cell.eventView.eventCard?.timeLabel.text = "salma"
-            cell.updateData(data: agendaArray[indexPath.section].events![indexPath.row])
+            if singleEvent.addToCalender == "0" {
+                cell.eventView.eventCard?.addToCalenderLabel.text = "Add to my calender"
+                cell.eventView.eventCard?.addToCalenderImage.image = #imageLiteral(resourceName: "plus")
+            }else{
+                cell.eventView.eventCard?.addToCalenderLabel.text = "Added to calender"
+                cell.eventView.eventCard?.addToCalenderImage.image = #imageLiteral(resourceName: "tick-inside-a-circle")
+            }
             
+//            cell.eventView.eventCard?.addToCalenderBtn.addTarget(self , action: #selector(addToCalender(event:)) , for: .touchUpInside)
+            cell.eventView.eventCard?.EventName.text = singleEvent.title
+            cell.eventView.eventCard?.timeLabel.text = "\(singleEvent.timeFrom ?? "" ) - \(singleEvent.timeTo ?? "")"
+  
             if indexPath.row == 0 {
                 cell.circleView.isHidden = false
                 cell.timelineTopConstraint.constant = 60
-                cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
-                cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].events![indexPath.row].date ?? "")
+                cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].date ?? "") //.events![indexPath.row].date ?? ""
+                cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].date ?? ""
+                ) //.events![indexPath.row].date ?? ""
             } else {
                 cell.monthName.text = ""
                 cell.dayNum.text = ""
@@ -219,6 +231,30 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
         return UITableViewCell()
         
     }
+    
+//    @objc func addToCalender(event : EventModel){
+//        NetworkServices.addToCalender(success: { (res) in
+//            if let response = res as? JSON {
+//                if response["status"] == "1" {
+//                    if self.event.addToCalender == "0" {
+//                        event.addBtn.setImage(#imageLiteral(resourceName: "tick-inside-a-circle"), for: .normal)
+//                        event.addToCalenderLbl.text = "Added to calender"
+//                        event.selectedData.1.addToCalender = "1"
+//                    }else{
+//                        event.addBtn.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
+//                        event.addToCalenderLbl.text = "Add to my calender"
+//                        event.addToCalender = "0"
+//                    }
+//                }
+//            }
+//        }) { (error) in
+//            if let error = error {
+//                self.showToast(msg: error.localizedDescription)
+//            }else{
+//                self.showToast(msg: "verify that your information is correct or no internet connectivity")
+//            }
+//        }
+//    }
     
     
     

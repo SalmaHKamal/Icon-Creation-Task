@@ -32,11 +32,11 @@ class SingleAgendaCell : UITableViewCell { //, UITableViewDataSource , UITableVi
     }
     
     
-    func updateData(data: EventModel) {
-//        if let eventView = eventView {
-            eventView.updateData(data: data)
-        eventView.eventCard?.EventName.text = "salam"
-//        }
-    }
+//    func updateData(data: EventModel) {
+////        if let eventView = eventView {
+//            eventView.updateData(data: data)
+////        eventView.eventCard?.EventName.text = "salam"
+////        }
+//    }
  
 }

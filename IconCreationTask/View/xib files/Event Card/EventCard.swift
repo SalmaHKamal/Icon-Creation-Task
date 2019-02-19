@@ -16,8 +16,10 @@ class EventCard: UIView {
     @IBOutlet weak var addToCalenderLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var EventName: UILabel!
-    @IBOutlet weak var addToCalenderBtn: UIButton!
-   
+
+    @IBOutlet weak var addToCalenderImage: UIImageView!
+    @IBOutlet weak var addToCalenderBtn : UIButton!
+    
     @IBOutlet weak var eventTitle: UILabel!
     
     override func awakeFromNib() {
@@ -27,22 +29,28 @@ class EventCard: UIView {
         timeLabel.textColor = darkGrayColor
         cardView.layer.masksToBounds = true
         cardView.layer.cornerRadius = 10
+ 
+//        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "updateData"), object: nil, queue: nil, using: updateData)
     }
     
-    func updateData(with data: EventModel){
-        timeLabel.text = "\(data.timeFrom ?? "") \(data.timeTo ?? "")"
-        eventTitle.text = data.title
-        if data.addToCalender == "0" {
-            addToCalenderLabel.text = "Added to calender"
-            addToCalenderBtn.setImage(#imageLiteral(resourceName: "tick-inside-a-circle"), for: .normal)
-        }else{
-            addToCalenderLabel.text = "Add to my calender"
-            addToCalenderBtn.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
-        }
-        
-    }
+    
+    
+//    func updateData(notification:Notification){
+//        guard let data = notification.userInfo!["event"] as? EventModel else {
+//            return
+//        }
+//        
+//        print("event data => \(data)")
+//        timeLabel.text = "\(data.timeFrom ?? "") \(data.timeTo ?? "")"
+//        eventTitle.text = data.title
+//        if data.addToCalender == "0" {
+//            addToCalenderLabel.text = "Added to calender"
+//            addToCalenderBtn.setImage(#imageLiteral(resourceName: "tick-inside-a-circle"), for: .normal)
+//        }else{
+//            addToCalenderLabel.text = "Add to my calender"
+//            addToCalenderBtn.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
+//        }
+//        
+//    }
 
-    @IBAction func addToCalenderAction(_ sender: Any) {
-        
-    }
 }
