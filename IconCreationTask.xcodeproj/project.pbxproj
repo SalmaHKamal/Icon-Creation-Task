@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		800D0D732215456C002728C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D0D722215456C002728C8 /* AppDelegate.swift */; };
 		800D0D782215456C002728C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 800D0D762215456C002728C8 /* Main.storyboard */; };
-		800D0D7B2215456C002728C8 /* IconCreationTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 800D0D792215456C002728C8 /* IconCreationTask.xcdatamodeld */; };
 		800D0D7D2215456D002728C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 800D0D7C2215456D002728C8 /* Assets.xcassets */; };
 		800D0D802215456D002728C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 800D0D7E2215456D002728C8 /* LaunchScreen.storyboard */; };
 		801970E32219874700749CE9 /* AgendaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801970E22219874700749CE9 /* AgendaTableViewController.swift */; };
@@ -50,7 +49,6 @@
 		800D0D6F2215456C002728C8 /* IconCreationTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconCreationTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		800D0D722215456C002728C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		800D0D772215456C002728C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		800D0D7A2215456C002728C8 /* IconCreationTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IconCreationTask.xcdatamodel; sourceTree = "<group>"; };
 		800D0D7C2215456D002728C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		800D0D7F2215456D002728C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		800D0D812215456D002728C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				800D0D7C2215456D002728C8 /* Assets.xcassets */,
 				800D0D7E2215456D002728C8 /* LaunchScreen.storyboard */,
 				800D0D812215456D002728C8 /* Info.plist */,
-				800D0D792215456C002728C8 /* IconCreationTask.xcdatamodeld */,
 				80B4915E2215A8A100DD25D3 /* Constants.swift */,
 			);
 			path = IconCreationTask;
@@ -432,7 +429,6 @@
 				80F2D7F922157F43003097EE /* UserModel.swift in Sources */,
 				80F69853221A8EDE00EECE4B /* UserDefaultsManager.swift in Sources */,
 				80C563B12216B0F80038B9DF /* EventCard.swift in Sources */,
-				800D0D7B2215456C002728C8 /* IconCreationTask.xcdatamodeld in Sources */,
 				80F275142216CD5400864D59 /* TimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,7 +579,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2VH28277N9;
 				INFOPLIST_FILE = IconCreationTask/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -603,7 +599,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2VH28277N9;
 				INFOPLIST_FILE = IconCreationTask/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -637,19 +633,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		800D0D792215456C002728C8 /* IconCreationTask.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				800D0D7A2215456C002728C8 /* IconCreationTask.xcdatamodel */,
-			);
-			currentVersion = 800D0D7A2215456C002728C8 /* IconCreationTask.xcdatamodel */;
-			path = IconCreationTask.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 800D0D672215456C002728C8 /* Project object */;
 }

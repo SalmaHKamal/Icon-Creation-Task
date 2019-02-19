@@ -35,7 +35,7 @@ class DatabaseManager {
         if let realm = realmInstance(){
             //delet any old data
             
-//            deleteAll()
+            deleteAll()
             let newUser = User()
             newUser.name = user.name
             newUser.email = user.email
@@ -57,7 +57,10 @@ class DatabaseManager {
     
     func deleteAll() {
         if let realm = realmInstance() {
-            realm.deleteAll()
+            try! realm.write {
+                realm.deleteAll()
+            }
+            
         }
     }
     

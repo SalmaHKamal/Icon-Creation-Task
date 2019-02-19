@@ -21,6 +21,7 @@ class SignUpViewController: UITableViewController {
     @IBOutlet weak var userConfirmPass: UITextField!
     @IBOutlet weak var signupButton: UIButton!
 
+    var viewYVal : CGFloat = 0.0
     var imagePicker = UIImagePickerController()
     var base64ImageString : String {
         get{
@@ -37,13 +38,16 @@ class SignUpViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarView?.backgroundColor = lightGrayColor
+        UIApplication.shared.statusBarView?.backgroundColor = .white
+        viewYVal = view.frame.minY
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         customizeUI()
+        observeKeyboardNotifications()
+        
     }
     
     func customizeUI(){
@@ -54,50 +58,72 @@ class SignUpViewController: UITableViewController {
         customizePasswordTxtField(passTextFiled: userPass)
     }
     
+    func observeKeyboardNotifications(){
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(showKeyboard),
+            name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(hideKeyboard),
+            name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func showKeyboard(){
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            let y : CGFloat = UIDevice.current.orientation.isLandscape ? -150 : -100
+            self.view.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+    }
+    
+    @objc func hideKeyboard(){
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.frame = CGRect(x: 0, y: self.viewYVal, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+    }
+    
     @IBAction func signUp(_ sender: Any) {
-        goToAgendaVC()
-//        guard let name = userName.text , name != "" ,
-//        let email = userEmail.text , email != "" ,
-//        let country = userCountry.text , country != "",
-//        let password = userPass.text , password != "" ,
-//        let confirm = userConfirmPass.text , confirm != "" , password == confirm
-//        else {
-//            if userConfirmPass.text != userPass.text {
-//                showToast(msg: "passwords didn't match")
-//            }else{
-//                showToast(msg: "All fields are required")
-//            }
-//
-//            return
-//        }
-//
-//        let userData = UserModel(_image: base64ImageString ,
-//                                 _name: name ,
-//                                 _email: email,
-//                                 _country: country,
-//                                 _password: password)
-//
-//        NetworkServices.signUp(userData: userData
-//            , success: { (res) in
-//                if let value = res as? JSON {
-//                    if value["status"] == "1" {
-//                        self.goToAgendaVC()
-////                        saveInDB()
-//                        DatabaseManager.sharedInstance.saveUser(user: userData)
-//                        //save state in user defaults
-//                        UserDefaults.standard.set( true , forKey: userDefaultsKeys.isLoggedIn.rawValue)
-//                    }else{
-//                        self.showToast(msg: value["MessageText"].stringValue)
-//                    }
-//                }
-//
-//        }) { (error) in
-//            if let error = error {
-//                self.showToast(msg: error.localizedDescription)
-//            }else{
-//                self.showToast(msg: "verify that your information is correct or no internet connectivity")
-//            }
-//        }
+
+        guard let name = userName.text , name != "" ,
+        let email = userEmail.text , email != "" ,
+        let country = userCountry.text , country != "",
+        let password = userPass.text , password != "" ,
+        let confirm = userConfirmPass.text , confirm != "" , password == confirm
+        else {
+            if userConfirmPass.text != userPass.text {
+                showToast(msg: "passwords didn't match")
+            }else{
+                showToast(msg: "All fields are required")
+            }
+
+            return
+        }
+
+        let userData = UserModel(_image: base64ImageString ,
+                                 _name: name ,
+                                 _email: email,
+                                 _country: country,
+                                 _password: password)
+
+        NetworkServices.signUp(userData: userData
+            , success: { (res) in
+                if let value = res as? JSON {
+                    if value["status"] == "1" {
+                        self.goToAgendaVC()
+                        DatabaseManager.sharedInstance.saveUser(user: userData)
+                        UserDefaults.standard.set( true , forKey: userDefaultsKeys.isLoggedIn.rawValue)
+                    }else{
+                        self.showToast(msg: value["MessageText"].stringValue)
+                    }
+                }
+
+        }) { (error) in
+            if let error = error {
+                self.showToast(msg: error.localizedDescription)
+            }else{
+                self.showToast(msg: "verify that your information is correct or no internet connectivity")
+            }
+        }
 
     }
 

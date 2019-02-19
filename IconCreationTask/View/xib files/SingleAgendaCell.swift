@@ -42,6 +42,7 @@ class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDe
         //        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "reloadData"), object: nil)
     }
     
+    
     func updateCell(notification : Notification){
         
         guard let array = notification.userInfo!["agenda"] as? [AgendaModel] else { return }
@@ -85,18 +86,26 @@ class SingleAgendaCell : UITableViewCell , UITableViewDataSource , UITableViewDe
             if let event = agenda.events {
                 if event[indexPath.row].addToCalender == "0" {
                     cell.eventCard.addToCalenderLabel.text = "Add to my calender"
+//                    cell.eventCard .
                 }else{
                     cell.eventCard.addToCalenderLabel.text = "Added to calender"
                 }
                 cell.eventCard.timeLabel.text = "\(event[indexPath.row].timeFrom ?? "") - \(event[indexPath.row].timeTo ?? "")"
-                cell.eventCard.EventName.text = event[indexPath.row].title
+                cell.eventCard.EventName.text =  event[indexPath.row].title
                 dayNum.text = extrackDay(dateString : event[indexPath.row].date ?? "")
                 monthName.text = getMonthName(dateString : event[indexPath.row].date ?? "")
+                cell.accessoryType = .none
             }
         }
         
         return cell
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let sessionVC = mainStoryboard.instantiateViewController(withIdentifier: "agendaVC")
+//        UINavigationController.pushViewController(sessionVC)
+//    }
     
     func extrackDay(dateString : String) -> String{
         let dateFormatter = DateFormatter()

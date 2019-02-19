@@ -41,11 +41,11 @@ class AgendaViewController : UIViewController {
         
         parentTableView.delegate = self
         parentTableView.dataSource = self
+
+        parentTableView.isHidden = true
+        noEventsView.isHidden = false
         
-        parentTableView.isHidden = false
-        noEventsView.isHidden = true
-        
-        activityIndicatorView.isHidden = true
+        activityIndicatorView.isHidden = false
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
         
@@ -62,6 +62,8 @@ class AgendaViewController : UIViewController {
 
     }
     
+
+    
     @objc func refreshAgendaData(){
         agendaArray = []
         getAgendaData()
@@ -73,8 +75,10 @@ class AgendaViewController : UIViewController {
         NetworkServices.getAgendaList(success: { (value) in
             if let result = value as? JSON {
                 if result["status"] == "1" {
-                    for agenda in result["data"][0] {
-                        for event in agenda.1 {
+                    for agenda in result["data"]{
+                        print("salma agenda => \(agenda)")
+                        for event in agenda.1["data"] {
+                            print("salma event for one agenda")
                             self.eventArray.append(EventModel(_id: event.1["id"].stringValue,
                                                          _title: event.1["title"].stringValue,
                                                          _timeFrom: event.1["time_from"].stringValue,
@@ -117,16 +121,15 @@ class AgendaViewController : UIViewController {
         activityIndicatorView.startAnimating()
         refreshControl.endRefreshing()
     }
+    
+
 
 }
 
 
 
 extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == parentTableView {
             print("salma")
@@ -141,13 +144,18 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
         if tableView == parentTableView {
             let cell = parentTableView.dequeueReusableCell(withIdentifier: "agendaCell", for: indexPath) as! SingleAgendaCell
             cell.cellIndex = indexPath.row
-            print("index path => \(cell.cellIndex)")
+            
+            cell.dayNum.text = agendaArray[indexPath.row].date
+//            print("index path => \(cell.cellIndex)")
             cell.tag = indexPath.row
 //            cell.
 //            cell.circleView.layer.cornerRadius = 4
 //            cell.circleView.layer.masksToBounds = true
-//            cell.dayNum.text = "6"
-//            cell.monthName.text = "Jan"
+//            cell.dayNum.text = "salma"
+//            cell.monthName.text = "hassan"
+            cell.eventCardTable.reloadData()
+//            if let c = cell.eventCardTable.cellForRow(at: indexPath) as? singleEventDetailsCell
+//            {c.eventCard.timeLabel.text = "salmaaaa"}
             if indexPath.row != 0 {
 //                cell.alignTopWithCircleView.isActive = false
 //                cell.timelineTopConstraint.constant = 0
@@ -159,6 +167,10 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
 
         return UITableViewCell()
 
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 600
     }
     
     

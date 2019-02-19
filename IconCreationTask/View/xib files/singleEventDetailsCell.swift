@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class singleEventDetailsCell : UITableViewCell {
     
@@ -17,6 +18,13 @@ class singleEventDetailsCell : UITableViewCell {
         if Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard != nil {
             eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard
             cellContentView.addSubview(eventCard)
+//            eventCard.snp.makeConstraints { (make) in
+//                make.top.equalTo(snp_topMargin)
+//                make.bottom.equalTo(snp_bottomMargin)
+//                make.leading.equalTo(snp_leadingMargin)
+//                make.trailing.equalTo(snp_trailingMargin)
+//                make.height.equalTo(20)
+//            }
             eventCard.EventName.text = ""
             
             NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "updateCell"), object: nil, queue: nil, using: updateCell)
@@ -48,6 +56,7 @@ class singleEventDetailsCell : UITableViewCell {
 //        }
         
     }
+    
     
 }
 
