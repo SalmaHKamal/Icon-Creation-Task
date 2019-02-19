@@ -29,6 +29,9 @@ class SessionViewController: UIViewController ,UITableViewDelegate , UITableView
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var speakersLabel: UILabel!
     
+    @IBOutlet weak var eventTime: UILabel!
+    @IBOutlet weak var eventDate: UIView!
+    @IBOutlet weak var eventTitle: UILabel!
     var speakersArray = [[String:String]]()
     var added = false
     var selectedData = (AgendaModel(), EventModel())
@@ -73,7 +76,15 @@ class SessionViewController: UIViewController ,UITableViewDelegate , UITableView
         activityIndicator.isHidden = false
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
+        
+        initEventView()
        
+    }
+    
+    func initEventView(){
+        let event = selectedData.1
+        eventTitle.text = event.title
+        eventTime.text = "\(event.timeFrom ?? "") \(event.timeTo ?? "" ))"
     }
     
     func getListOfSpeakers(){

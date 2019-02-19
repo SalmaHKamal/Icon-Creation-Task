@@ -266,7 +266,7 @@
                                                     <rect key="frame" x="21.5" y="0.0" width="299" height="161"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMr-mn-SDL" userLabel="timeline View">
-                                                            <rect key="frame" x="94" y="50.5" width="2" height="110.5"/>
+                                                            <rect key="frame" x="94" y="0.0" width="2" height="161"/>
                                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="2" id="ccm-rL-y6u"/>
@@ -347,8 +347,8 @@
                                                         <constraint firstAttribute="bottom" secondItem="yMr-mn-SDL" secondAttribute="bottom" id="95U-Is-ZWV"/>
                                                         <constraint firstItem="y6h-nD-36p" firstAttribute="top" secondItem="gol-lJ-4SI" secondAttribute="top" constant="44.5" id="9LJ-Z5-Zn4"/>
                                                         <constraint firstAttribute="height" constant="161" id="Kf5-x4-mlv"/>
-                                                        <constraint firstItem="yMr-mn-SDL" firstAttribute="top" secondItem="Rhr-xe-gx9" secondAttribute="top" id="OXQ-Bo-z4j"/>
                                                         <constraint firstItem="Jcg-cC-Wx4" firstAttribute="leading" secondItem="Rhr-xe-gx9" secondAttribute="trailing" constant="29" id="T9Y-hU-ZkP"/>
+                                                        <constraint firstItem="yMr-mn-SDL" firstAttribute="top" secondItem="gol-lJ-4SI" secondAttribute="top" id="UgX-4C-C5w"/>
                                                         <constraint firstAttribute="trailing" secondItem="Jcg-cC-Wx4" secondAttribute="trailing" constant="8" id="Vkt-np-dqF"/>
                                                         <constraint firstItem="Rhr-xe-gx9" firstAttribute="leading" secondItem="y6h-nD-36p" secondAttribute="trailing" constant="32" id="Wis-Un-IuT"/>
                                                         <constraint firstItem="Rhr-xe-gx9" firstAttribute="top" secondItem="gol-lJ-4SI" secondAttribute="top" constant="50.5" id="YgB-Gi-2Vx"/>
@@ -369,7 +369,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="alignTopWithCircleView" destination="OXQ-Bo-z4j" id="rQU-KD-rGK"/>
                                             <outlet property="circleView" destination="Rhr-xe-gx9" id="Kk7-Ba-HPe"/>
                                             <outlet property="dateView" destination="y6h-nD-36p" id="7DI-at-2ZS"/>
                                             <outlet property="dayNum" destination="oI9-pF-AND" id="vRB-jv-s1I"/>
@@ -1398,6 +1397,9 @@
                         <outlet property="activityIndicator" destination="eS0-oq-Hvy" id="D8F-eo-A9F"/>
                         <outlet property="addBtn" destination="Obg-61-TG0" id="6Ph-hv-Xth"/>
                         <outlet property="addToCalenderLbl" destination="EGo-84-Gm8" id="3sS-Gk-0Jo"/>
+                        <outlet property="eventDate" destination="aKQ-ft-GqW" id="qqK-fB-5bz"/>
+                        <outlet property="eventTime" destination="uyK-oq-Kdh" id="38E-DW-lz3"/>
+                        <outlet property="eventTitle" destination="Ihd-4j-9rp" id="cSu-gx-o5j"/>
                         <outlet property="mainTableView" destination="rg7-2i-Ucg" id="Z08-iz-EVa"/>
                         <outlet property="noSpeakersView" destination="FlH-pI-1IR" id="bPH-BI-grq"/>
                         <outlet property="speakersLabel" destination="vzE-8G-MMj" id="iJ5-VO-GUe"/>

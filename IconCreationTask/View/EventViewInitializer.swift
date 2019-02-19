@@ -9,20 +9,18 @@
 import UIKit
 
 class EventViewInitializer: UIView {
-    
-    var salm : String?
-    
+
+    var eventCard : EventCard?
     override func awakeFromNib() {
         loadEventCard()
     }
-    
-    func updateViewWithData(agendaDate : [AgendaModel]) {
-        
-    }
-    
-    
+
     func loadEventCard() {
-        if let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard {
+        if Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard != nil {
+            
+            guard let eventCard = Bundle.main.loadNibNamed("EventCard", owner: self, options: nil)?.first as? EventCard else {
+                return
+            }
             
             addSubview(eventCard)
     
@@ -36,6 +34,12 @@ class EventViewInitializer: UIView {
             
         }else{
             print("couldn't load event card")
+        }
+    }
+    
+    func updateData(data: EventModel) {
+        if let card = eventCard {
+            card.updateData(with: data)
         }
     }
 }

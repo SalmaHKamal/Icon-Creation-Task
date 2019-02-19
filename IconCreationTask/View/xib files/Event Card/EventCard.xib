@@ -48,7 +48,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:00 A.M - 12:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ND-FQ-CTK">
-                                                    <rect key="frame" x="18" y="1" width="109" height="14"/>
+                                                    <rect key="frame" x="18" y="1.5" width="109" height="13"/>
                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                                     <rect key="frame" x="0.0" y="90" width="340" height="45"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Te8-wU-A4b" userLabel="add to calender View">
-                                            <rect key="frame" x="79" y="8" width="182" height="29"/>
+                                            <rect key="frame" x="86.5" y="8" width="167" height="29"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="EtL-U1-wlN">
                                                     <rect key="frame" x="0.0" y="4.5" width="20" height="20"/>
@@ -93,13 +93,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to my calender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ag-eu-0dQ">
-                                                    <rect key="frame" x="28" y="5.5" width="138" height="18"/>
+                                                    <rect key="frame" x="28" y="6.5" width="123" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="14"/>
                                                     <color key="textColor" red="0.1728983774" green="0.31587119499999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTM-f8-dOl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="29"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="29"/>
                                                     <connections>
                                                         <action selector="addToCalenderAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="roB-fj-DwB"/>
                                                     </connections>
@@ -165,6 +165,7 @@
                 <outlet property="bottomCardView" destination="CZn-AJ-nlY" id="oL2-6u-j9a"/>
                 <outlet property="cardTopView" destination="KpZ-LO-qoG" id="tqv-BM-PfE"/>
                 <outlet property="cardView" destination="GIT-8k-WM7" id="fvI-ay-29h"/>
+                <outlet property="eventTitle" destination="0f6-oO-t48" id="fCI-TJ-A6A"/>
                 <outlet property="timeLabel" destination="9ND-FQ-CTK" id="xBA-hV-04D"/>
             </connections>
             <point key="canvasLocation" x="238.40000000000001" y="-203.74812593703149"/>
