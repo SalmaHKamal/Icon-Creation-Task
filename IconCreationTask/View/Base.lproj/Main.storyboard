@@ -239,7 +239,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="936"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Event to show !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuB-hN-AKg">
-                                        <rect key="frame" x="111.5" y="457.5" width="152.5" height="21"/>
+                                        <rect key="frame" x="115.5" y="458" width="144" height="20"/>
                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -351,7 +351,6 @@
                                                         <constraint firstItem="yMr-mn-SDL" firstAttribute="top" secondItem="gol-lJ-4SI" secondAttribute="top" id="UgX-4C-C5w"/>
                                                         <constraint firstAttribute="trailing" secondItem="Jcg-cC-Wx4" secondAttribute="trailing" constant="8" id="Vkt-np-dqF"/>
                                                         <constraint firstItem="Rhr-xe-gx9" firstAttribute="leading" secondItem="y6h-nD-36p" secondAttribute="trailing" constant="32" id="Wis-Un-IuT"/>
-                                                        <constraint firstItem="Rhr-xe-gx9" firstAttribute="top" secondItem="gol-lJ-4SI" secondAttribute="top" constant="50.5" id="YgB-Gi-2Vx"/>
                                                         <constraint firstItem="Rhr-xe-gx9" firstAttribute="centerY" secondItem="oI9-pF-AND" secondAttribute="centerY" id="fp3-kj-Hj0"/>
                                                         <constraint firstItem="Jcg-cC-Wx4" firstAttribute="centerY" secondItem="Rhr-xe-gx9" secondAttribute="centerY" id="rlW-Tg-WWr"/>
                                                         <constraint firstItem="y6h-nD-36p" firstAttribute="leading" secondItem="gol-lJ-4SI" secondAttribute="leading" constant="8" id="rtN-0c-jlC"/>
@@ -375,7 +374,7 @@
                                             <outlet property="eventView" destination="Jcg-cC-Wx4" id="51F-JA-xrd"/>
                                             <outlet property="monthName" destination="mOJ-CH-z7x" id="KpX-v9-ICn"/>
                                             <outlet property="timelineBottomSpace" destination="95U-Is-ZWV" id="hT1-zd-WWL"/>
-                                            <outlet property="timelineTopConstraint" destination="YgB-Gi-2Vx" id="Vb4-2C-dLM"/>
+                                            <outlet property="timelineTopConstraint" destination="UgX-4C-C5w" id="KDF-BT-GJK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

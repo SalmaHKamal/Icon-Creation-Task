@@ -212,19 +212,35 @@ extension AgendaViewController : UITableViewDelegate , UITableViewDataSource {
 //            cell.eventView.eventCard?.addToCalenderBtn.addTarget(self , action: #selector(addToCalender(event:)) , for: .touchUpInside)
             cell.eventView.eventCard?.EventName.text = singleEvent.title
             cell.eventView.eventCard?.timeLabel.text = "\(singleEvent.timeFrom ?? "" ) - \(singleEvent.timeTo ?? "")"
-  
-            if indexPath.row == 0 {
+
+            if indexPath.row == 0  , indexPath.section == 0 {
                 cell.circleView.isHidden = false
                 cell.timelineTopConstraint.constant = 60
                 cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].date ?? "")
-                cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].date ?? ""
-                )
-            } else {
-                cell.monthName.text = ""
-                cell.dayNum.text = ""
+                cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].date ?? "")
+            }else if indexPath.row == 0 {
+                cell.circleView.isHidden = false
+                cell.timelineTopConstraint.constant = 0
+                cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].date ?? "")
+                cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].date ?? "")
+            }else{
                 cell.circleView.isHidden = true
                 cell.timelineTopConstraint.constant = 0
+                cell.monthName.text = ""
+                cell.dayNum.text = ""
             }
+//            if indexPath.row == 0 {
+//                cell.circleView.isHidden = false
+//                cell.timelineTopConstraint.constant = 60
+//                cell.dayNum.text = extrackDay(dateString: agendaArray[indexPath.section].date ?? "")
+//                cell.monthName.text = getMonthName(dateString: agendaArray[indexPath.section].date ?? ""
+//                )
+//            } else {
+//                cell.monthName.text = ""
+//                cell.dayNum.text = ""
+//                cell.circleView.isHidden = true
+//                cell.timelineTopConstraint.constant = 0
+//            }
             return cell
         }
         
